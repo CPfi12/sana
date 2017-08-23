@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 const path = require('path');
+const db = require('./db/db.js');
+const User = require('./db/models/users.js');
 
 const morgan = require('morgan');
 app.use(morgan('dev'));
@@ -16,13 +18,15 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/api', require('./server/routes'));
 
 
+const port = process.env.PORT || 3000;
 
-const port = process.env.PORT || 3000; // this can be very useful if you deploy to Heroku!
-app.listen(port, function () {
-  console.log("Knock, knock");
-  console.log("Who's there?");
-  console.log(`Your server, listening on port ${port}`);
-});
+db.sync({force:true})  // sync our database
+  .then(function(){
+    app.listen(port, function(){
+    	console.log('Listening on 3000???')
+    }) // then start listening with our express server once we have synced
+  })
+ // this can be very useful if you deploy to Heroku!
 
 app.use(function (req, res, next) {
   const err = new Error('Not found.');
