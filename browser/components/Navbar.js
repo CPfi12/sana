@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 
-export default class Navbar extends Component {
+class Navbar extends Component {
 
   constructor (props) {
     super(props);
   }
 
   render () {
+    console.log('RERENDING NAV', this.props.currentUser);
     return (
       <div>
         <nav className="navbar navbar-default">
@@ -19,16 +21,29 @@ export default class Navbar extends Component {
           <ul className="nav navbar-nav">
                 <li><Link to="/">Home</Link></li>
           </ul>
-          <ul className="nav navbar-nav navbar-right">
-              <li><a href="#"><span className="glyphicon glyphicon-user"></span> Sign Up</a></li>
-              <li><Link to="/login"><span className="glyphicon glyphicon-log-in"></span> Login</Link></li>
-          </ul>
-          <span className="navbar-text">
-              Person
-          </span>
+          
+          
+            <ul className="nav navbar-nav navbar-right">
+                <li><a href="#"><span className="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                <li><Link to="/login"><span className="glyphicon glyphicon-log-in"></span> Login</Link></li>
+            </ul>
+            
+          
+          {this.props.currentUser ? <span className="navbar-text">{this.props.currentUser.name}</span> : null}
           </div>
         </nav>
       </div>
     );
   }
 }
+
+//----------- CONTAINER ------------
+const mapState = (state) => {
+  return ({ currentUser: state.auth })};
+
+const mapDispatch = dispatch => {return ({})};
+
+
+
+
+export default connect(mapState, mapDispatch)(Navbar);

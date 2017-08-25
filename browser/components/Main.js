@@ -1,13 +1,19 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Navbar from './Navbar';
 import Login from './Login';
 import Home from './Home.js'
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
+import { load } from '../redux/auth';
 
-export default class Main extends Component {
+class Main extends Component {
 
   constructor (props) {
     super(props);
+  }
+
+  componentDidMount () {
+    this.props.load();
   }
 
   render () {
@@ -15,7 +21,6 @@ export default class Main extends Component {
     return (
       <div>
         <Router>
-      
             <Navbar/>
         </Router>
         <Router>
@@ -28,3 +33,15 @@ export default class Main extends Component {
     );
   }
 }
+
+/* -----------------    CONTAINER     ------------------ */
+
+const mapProps = null;
+
+const mapDispatch = dispatch => ({
+  load: () => {
+    dispatch(load());
+  }
+});
+
+export default connect(mapProps, mapDispatch)(Main);

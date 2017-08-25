@@ -27,7 +27,10 @@ class Login extends Component {
     console.log('Rendering with ', this.props.currentUser, this.props);
     return (
       <div>
+      {!this.props.currentUser ? 
+      (<div>
       <h3> Log In {this.props.currentUser}</h3>
+     
        <form onSubmit={this.onSubmit}>
         <label>
             Name:
@@ -39,13 +42,17 @@ class Login extends Component {
         </label>
         <input type="submit" value="Submit" />
       </form>
+      </div>) :
+      (<h1>{this.props.currentUser.name}</h1>)}
       </div>
     );
   }
 }
 
 //----------- CONTAINER ------------
-const mapState = (state) => ({ currentUser: state.currentUser });
+const mapState = (state) => {
+  console.log(state)
+  return ({ currentUser: state.auth })};
 
 const mapDispatch = function (dispatch) {
   return {
