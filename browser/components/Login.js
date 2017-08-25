@@ -10,11 +10,15 @@ export default class Login extends Component {
   render () {
     return (
       <div>
-       <h1>Login HERE</h1>
+      <h3> Log In </h3>
        <form>
         <label>
-            Login
+            Name:
             <input type="text" name="name" />
+        </label>
+         <label>
+            Password:
+            <input type="text" name="email" />
         </label>
         <input type="submit" value="Submit" />
       </form>

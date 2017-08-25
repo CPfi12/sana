@@ -14,12 +14,18 @@ export default class Navbar extends Component {
         <nav className="navbar navbar-default">
           <div className="container-fluid">
             <div className="navbar-header">
-              <a className="navbar-brand" href="#">Name</a>
+              <Link className="navbar-brand" to='/'>Name</Link>
             </div>
           <ul className="nav navbar-nav">
                 <li><Link to="/">Home</Link></li>
-                <li><Link to="/login">Login</Link></li>
           </ul>
+          <ul className="nav navbar-nav navbar-right">
+              <li><a href="#"><span className="glyphicon glyphicon-user"></span> Sign Up</a></li>
+              <li><Link to="/login"><span className="glyphicon glyphicon-log-in"></span> Login</Link></li>
+          </ul>
+          <span className="navbar-text">
+              Person
+          </span>
           </div>
         </nav>
       </div>
