@@ -1,12 +1,18 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import {logout} from '../redux/auth.js';
 
 
 class Navbar extends Component {
 
   constructor (props) {
     super(props);
+    this.onClick = this.onClick.bind(this)
+  }
+
+  onClick(){
+      this.props.removeUser();
   }
 
   render () {
@@ -29,7 +35,7 @@ class Navbar extends Component {
             </ul>
             :
             <ul className="nav navbar-nav navbar-right">
-                <li><a href="#"><span className="glyphicon glyphicon-log-out"></span> Sign Out</a></li>
+                <li><a href="#" onClick={this.onClick}><span className="glyphicon glyphicon-log-out"></span> Sign Out</a></li>
                 <li><span className="navbar-text">{this.props.currentUser.name}</span></li>
             </ul>
           }
@@ -47,7 +53,13 @@ class Navbar extends Component {
 const mapState = (state) => {
   return ({ currentUser: state.auth })};
 
-const mapDispatch = dispatch => {return ({})};
+const mapDispatch = function (dispatch) {
+  return {
+    removeUser() {
+      dispatch(logout());
+    }
+  };
+};
 
 
 

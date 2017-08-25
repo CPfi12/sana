@@ -21,12 +21,20 @@ export default function reducer (currentUser=null, action) {
       	return action.user;
 
     case REMOVE:
-    console.log('???')
       return null;
 
     default:
       return currentUser;
   }
+}
+
+export const logout = user => dispatch =>{
+	return axios.post('/auth/remove')
+		.then(res=>res.data)
+		.then(res=>{
+			console.log(res);
+			dispatch(remove())
+		})
 }
 
 export const load = user => dispatch => {

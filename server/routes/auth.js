@@ -31,4 +31,9 @@ router.get('/onLoad', function(req, res, next){
 	})
 })
 
+router.post('/remove', function(req,res,next){
+	req.session.userId = null;
+	res.send('removed!')
+})
+
 module.exports = router;
