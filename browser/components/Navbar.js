@@ -22,14 +22,20 @@ class Navbar extends Component {
                 <li><Link to="/">Home</Link></li>
           </ul>
           
-          
+          {!this.props.currentUser ?
             <ul className="nav navbar-nav navbar-right">
                 <li><a href="#"><span className="glyphicon glyphicon-user"></span> Sign Up</a></li>
                 <li><Link to="/login"><span className="glyphicon glyphicon-log-in"></span> Login</Link></li>
             </ul>
+            :
+            <ul className="nav navbar-nav navbar-right">
+                <li><a href="#"><span className="glyphicon glyphicon-log-out"></span> Sign Out</a></li>
+                <li><span className="navbar-text">{this.props.currentUser.name}</span></li>
+            </ul>
+          }
             
           
-          {this.props.currentUser ? <span className="navbar-text">{this.props.currentUser.name}</span> : null}
+          
           </div>
         </nav>
       </div>

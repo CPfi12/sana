@@ -1,9 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import store from './redux/store.js';
+import Main from './components/Main.js';
 
-console.log('here???');
+
+console.log(store)
 
 ReactDOM.render(
-  <h1>KETTI</h1>,
+   <Provider store={store}>
+    <Main/>
+  </Provider>,
   document.getElementById('app') 
 )
