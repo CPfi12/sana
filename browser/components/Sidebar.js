@@ -27,7 +27,9 @@ class Sidebar extends Component {
             this.props.currentChats.map((chat)=>{
                 var nameArr = chat.thing.split('_');
                 var name = (nameArr[0]===this.props.currentUser.alias) ? nameArr[1] : nameArr[0];
-                return (<li key={chat.thing}><a href='#'>{name}</a></li>) 
+                var exp = `/chat/${chat.thing}`
+                console.log(exp);
+                return (<li key={chat.thing}><Link to={exp}>{name}</Link></li>) 
             })
           }
           </ul>

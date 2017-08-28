@@ -11,15 +11,17 @@ class Chat extends Component {
   }
 
   componentDidMount(){
-    console.log('MOUNTING', this.props)
-    this.props.getBuds();
   }
 
   render () {
-      <div>
-        <input placeholder={'type here!'}/>
-        
-      </div>
+    return(
+      <form>
+        <label>
+        Name:
+            <input type="text" name="name" />
+        </label>
+        <input type="submit" value="Submit" />
+      </form>
     );
   }
 }

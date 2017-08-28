@@ -6,6 +6,7 @@ import Home from './Home.js'
 import Signup from './Signup';
 import Sidebar from './Sidebar';
 import AddChat from './addChat';
+import Chat from './Chat';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import { load } from '../redux/auth';
 import socket from '../clientSocket.js';
@@ -33,7 +34,9 @@ class Main extends Component {
         <div className="row">
         {this.props.currentUser ? 
           <div className="col-xs-2">
+          <Router>
             <Sidebar/>
+          </Router>
           </div> : null }
           <div className="col-xs-10">
         <Router>
@@ -41,6 +44,7 @@ class Main extends Component {
               <Route exact path="/login" component={Login} />
               <Route exact path="/signup" component={Signup} />
               <Route exact path="/addChat" component={AddChat}/>
+              <Route exact path="/chat/:room" component={Chat}/> 
               <Route component={Home} />
           </Switch>
        </Router>
