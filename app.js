@@ -27,12 +27,13 @@ app.use(passport.session());
 
 //routes & server
 app.use('/api', require('./server/routes'));
+app.use('/chat', require('./server/routes/chat'));
 app.use('/auth', require('./server/routes/auth'));
 
 
 const port = process.env.PORT || 3000;
 
-db.sync({force:true})
+db.sync()
   .then(function(){
     app.listen(port, function(){
     	console.log('Listening on 3000???')

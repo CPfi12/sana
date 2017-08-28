@@ -42,6 +42,7 @@ router.post('/signup', function(req,res,next){
 	console.log('in signup route!!')
 	User.create(req.body)
 		.then((user)=>{
+			req.session.userId = user.id;
 			var undercov = alias[user.id-1];
 			return user.update({alias: undercov})
 		})

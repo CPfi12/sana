@@ -5,6 +5,7 @@ import Login from './Login';
 import Home from './Home.js'
 import Signup from './Signup';
 import Sidebar from './Sidebar';
+import AddChat from './addChat';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import { load } from '../redux/auth';
 
@@ -16,6 +17,7 @@ class Main extends Component {
 
   componentDidMount () {
     this.props.load();
+    
   }
 
   render () {
@@ -37,6 +39,7 @@ class Main extends Component {
           <Switch>
               <Route exact path="/login" component={Login} />
               <Route exact path="/signup" component={Signup} />
+              <Route exact path="/addChat" component={AddChat}/>
               <Route component={Home} />
           </Switch>
        </Router>

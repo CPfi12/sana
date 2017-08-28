@@ -27,6 +27,11 @@ class Navbar extends Component {
           <ul className="nav navbar-nav">
                 <li><Link to="/">Home</Link></li>
           </ul>
+          {this.props.currentUser ?
+          <ul className="nav navbar-nav">
+                <li><Link to="/addChat">Talk</Link></li>
+          </ul> :
+          null}
           
           {!this.props.currentUser ?
             <ul className="nav navbar-nav navbar-right">
