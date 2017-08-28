@@ -22,7 +22,7 @@ class Navbar extends Component {
         <nav className="navbar navbar-default">
           <div className="container-fluid">
             <div className="navbar-header">
-              <Link className="navbar-brand" to='/'>Name</Link>
+              <Link className="navbar-brand" to='/'>ikke.</Link>
             </div>
           <ul className="nav navbar-nav">
                 <li><Link to="/">Home</Link></li>
@@ -30,13 +30,13 @@ class Navbar extends Component {
           
           {!this.props.currentUser ?
             <ul className="nav navbar-nav navbar-right">
-                <li><a href="#"><span className="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                <li><Link to="/login"><span className="glyphicon glyphicon-log-in"></span> Login</Link></li>
+                <li><Link to="/signup"><span className="glyphicon glyphicon-user"></span> Sign Up</Link></li>
+                <li><Link to="/login"><span className="glyphicon glyphicon-log-in"></span> Log In</Link></li>
             </ul>
             :
             <ul className="nav navbar-nav navbar-right">
                 <li><a href="#" onClick={this.onClick}><span className="glyphicon glyphicon-log-out"></span> Sign Out</a></li>
-                <li><span className="navbar-text">{this.props.currentUser.name}</span></li>
+                <li><span className="navbar-text">{this.props.currentUser.name} ( {this.props.currentUser.alias} )</span></li>
             </ul>
           }
             

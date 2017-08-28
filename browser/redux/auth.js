@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { browserHistory } from 'react-router';
 
 /* ------------------    ACTIONS    --------------------- */
 
@@ -28,6 +29,15 @@ export default function reducer (currentUser=null, action) {
   }
 }
 
+export const signin = user => dispatch =>{
+	console.log('in signin thunk!')
+	return axios.post('/auth/signup', user)
+	    .then(res=>res.data)
+		.then(user=>{
+			console.log('WHAT BACKEND MADE',user);
+			dispatch(set(user))
+		})
+}
 export const logout = user => dispatch =>{
 	return axios.post('/auth/remove')
 		.then(res=>res.data)
@@ -44,6 +54,8 @@ export const load = user => dispatch => {
 			dispatch(set(user));
 		})
 }
+
+
 
 export const login = credentials => dispatch => {
   return axios.post('/auth/login', credentials)

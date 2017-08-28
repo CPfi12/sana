@@ -1,6 +1,8 @@
 const router = require('express').Router();
 const User = require('../../db/models/users.js');
 
+const alias = ['Arendal', 'Bergen', 'Bodø', 'Drammen', 'Egersund', 'Farsund', 'Flekkefjord', 'Florø', 'Fredrikstad', 'Gjøvik'];
+
 router.get('/', function(req,res,next){
 	res.send('getting a user');
 })
@@ -34,6 +36,18 @@ router.get('/onLoad', function(req, res, next){
 router.post('/remove', function(req,res,next){
 	req.session.userId = null;
 	res.send('removed!')
+})
+
+router.post('/signup', function(req,res,next){
+	console.log('in signup route!!')
+	User.create(req.body)
+		.then((user)=>{
+			var undercov = alias[user.id-1];
+			return user.update({alias: undercov})
+		})
+		.then((user)=>{
+			res.send(user);
+		})
 })
 
 module.exports = router;
