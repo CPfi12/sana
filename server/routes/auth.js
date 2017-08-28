@@ -22,7 +22,6 @@ router.post('/login', function(req, res, next){
 })
 
 router.get('/onLoad', function(req, res, next){
-	console.log(req.session.userId);
 	User.findOne({
 		where:{
 			id: req.session.userId

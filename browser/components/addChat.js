@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import {login} from '../redux/auth.js';
 import { connect } from 'react-redux';
-import {loadBuds} from '../redux/buds.js'; 
+import {loadBuds} from '../redux/buds.js';
+import {addChat} from '../redux/chat.js';
 
 class AddChat extends Component {
 
@@ -23,7 +24,7 @@ class AddChat extends Component {
         <ul>
         {
           peer.map((bud)=>{
-            return (<li onClick={()=>{console.log('clickable??')}}><a> {bud.alias} </a> </li>)
+            return (<li onClick={()=>{this.props.addNewChat(bud.id)}} key={bud.id}><a> {bud.alias} </a> </li>)
           })
         }
         </ul>
@@ -31,7 +32,7 @@ class AddChat extends Component {
         <ul>
         {
           med.map((bud)=>{
-            return (<li onClick={()=>{console.log('clickable?')}}><a> {bud.alias} </a></li>)
+            return (<li onClick={()=>{this.props.addNewChat(bud.id)}} key={bud.id}><a> {bud.alias} </a></li>)
           })
         }
         </ul>
@@ -49,8 +50,11 @@ const mapState = (state) => {
 
 const mapDispatch = function (dispatch) {
   return {
-    getBuds() {
-      dispatch(loadBuds());
+    getBuds: () =>{
+      dispatch(loadBuds())
+    },
+    addNewChat: (mentorId)=>{
+      dispatch(addChat(mentorId))
     }
   };
 };

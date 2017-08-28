@@ -3,11 +3,17 @@ const app = express();
 const path = require('path');
 const db = require('./db/db.js');
 const User = require('./db/models/users.js');
+const Chat = require('./db/models/chat.js');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const session = require('express-session');
 
+
+// handle sockets
+
+console.log(User);
+console.log(Chat);
 //middleware
 app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -32,12 +38,16 @@ app.use('/auth', require('./server/routes/auth'));
 
 
 const port = process.env.PORT || 3000;
-
+var server;
 db.sync()
   .then(function(){
-    app.listen(port, function(){
+    server = app.listen(port, function(){
     	console.log('Listening on 3000???')
     }) 
+  })
+  .then(()=>{
+     const io = require('socket.io')(server);
+     require('./server/serverSockets')(io); 
   })
  
 

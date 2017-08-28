@@ -56,7 +56,7 @@ class Navbar extends Component {
 
 //----------- CONTAINER ------------
 const mapState = (state) => {
-  return ({ currentUser: state.auth })};
+  return ({ currentUser: state.auth})};
 
 const mapDispatch = function (dispatch) {
   return {

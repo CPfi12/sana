@@ -10,4 +10,6 @@ const User = db.define('user', {
   //role: Sequelize.ENUM('Student', 'Peer Counselor', 'Healthcare Professional', 'Admin')
 })
 
+//User.hasOne(Chat);
+console.log(User);
 module.exports = User;

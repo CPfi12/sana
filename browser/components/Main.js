@@ -8,6 +8,7 @@ import Sidebar from './Sidebar';
 import AddChat from './addChat';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import { load } from '../redux/auth';
+import socket from '../clientSocket.js';
 
 class Main extends Component {
 

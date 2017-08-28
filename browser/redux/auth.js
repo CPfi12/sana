@@ -17,7 +17,7 @@ export default function reducer (currentUser=null, action) {
   switch (action.type) {
 
     case SET:
-    	console.log('action.user', action.user)
+
       //return action.user;
       	return action.user;
 
