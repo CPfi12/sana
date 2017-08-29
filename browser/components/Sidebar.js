@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {loadChats} from '../redux/chat.js';
 
@@ -29,7 +29,7 @@ class Sidebar extends Component {
                 var name = (nameArr[0]===this.props.currentUser.alias) ? nameArr[1] : nameArr[0];
                 var exp = `/chat/${chat.thing}`
                 console.log(exp);
-                return (<li key={chat.thing}><Link to={exp}>{name}</Link></li>) 
+                return (<li key={chat.thing}><NavLink to={exp}>{name}</NavLink></li>) 
             })
           }
           </ul>

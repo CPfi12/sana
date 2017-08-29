@@ -1,3 +1,14 @@
 var User = require('./users');
-console.log('!!!!!', User);
-module.exports = 'index export';
+var ChatApp = require('./chat');
+let Messages = require('./messages');
+
+console.log('running this????');
+ChatApp.belongsTo(User, {as: 'Mentor'});
+ChatApp.belongsTo(User, {as: 'Mentee'});
+Messages.belongsTo(ChatApp);
+
+module.exports = {
+	User,
+	ChatApp,
+	Messages
+}

@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const path = require('path');
-const db = require('./db/db.js');
+const db = require('./db');
 const User = require('./db/models/users.js');
 const Chat = require('./db/models/chat.js');
 const morgan = require('morgan');
@@ -35,6 +35,7 @@ app.use(passport.session());
 app.use('/api', require('./server/routes'));
 app.use('/chat', require('./server/routes/chat'));
 app.use('/auth', require('./server/routes/auth'));
+app.use('/messages', require('./server/routes/messages'));
 
 
 const port = process.env.PORT || 3000;

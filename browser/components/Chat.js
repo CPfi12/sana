@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import {login} from '../redux/auth.js';
 import { connect } from 'react-redux';
-import {loadBuds} from '../redux/buds.js';
-import {addChat} from '../redux/chat.js';
+import {add, load} from '../redux/messages.js';
 
 class Chat extends Component {
 
@@ -11,33 +10,53 @@ class Chat extends Component {
   }
 
   componentDidMount(){
+    console.log('MOUNTING CHAT', this.props)
+    this.props.loadMessages(this.props.room);
   }
 
   render () {
+    console.log('PROPPPPPP',this.props);
+
     return(
-      <form>
+      <div>
+      
+    <ul>
+    {
+      this.props.messages.map((message)=>{
+        return (<li><span>{message.authorAlias}: {message.content}</span></li>)
+      })
+    }
+    </ul>
+      <form onSubmit={(evt)=>{this.props.onSubmit(evt, this.props.currentUser.alias, this.props.room)}}>
         <label>
-        Name:
-            <input type="text" name="name" />
+        Message:
+            <input type="text" name="mess" />
         </label>
         <input type="submit" value="Submit" />
       </form>
+      </div>
     );
   }
 }
 
 //----------- CONTAINER ------------
-const mapState = (state) => {
+const mapState = (state, ownProps) => {
   console.log(state)
-  return ({ possBuds: state.buds })};
+  return ({ currentUser: state.auth,
+  messages: state.messages,
+  room: ownProps.match.url.split('/')[2] })};
 
 const mapDispatch = function (dispatch) {
   return {
-    getBuds: () =>{
-      dispatch(loadBuds())
+    onSubmit: (evt, userName, room) =>{
+      evt.preventDefault();
+      var message = {authorAlias: userName, content: evt.target.mess.value}
+      console.log('FIRST MESS', message);
+      evt.target.mess.value = '';
+      dispatch(add(message, room))
     },
-    addNewChat: (mentorId)=>{
-      dispatch(addChat(mentorId))
+    loadMessages: (room) =>{
+      dispatch(load(room));
     }
   };
 };
