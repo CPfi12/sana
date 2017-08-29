@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { withRouter, Link, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {loadChats} from '../redux/chat.js';
 
@@ -14,8 +14,15 @@ class Sidebar extends Component {
     this.props.loadingChats();
   }
 
+  /*componentWillUpdate(){
+    console.log('UPDATING', this.props);
+    this.props.loadingChats();
+  }*/
+
+  
+
   render () {
-    console.log('PROPS',this.props);
+    console.log('RENDERINGGGGG', this.props)
     return (
       <div id="sidebar-wrapper">
        <sidebar>
@@ -58,4 +65,4 @@ const mapDispatch = dispatch => ({
 
 
 
-export default connect(mapState, mapDispatch)(Sidebar);
+export default withRouter(connect(mapState, mapDispatch)(Sidebar));

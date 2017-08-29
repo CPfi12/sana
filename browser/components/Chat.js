@@ -14,6 +14,13 @@ class Chat extends Component {
     this.props.loadMessages(this.props.room);
   }
 
+  componentWillReceiveProps(nextProps){
+    console.log('RECEIVING THE PROPS')
+      if(this.props.room!==nextProps.room)
+        this.props.loadMessages(nextProps.room);
+  }
+
+
   render () {
     console.log('PROPPPPPP',this.props);
 
