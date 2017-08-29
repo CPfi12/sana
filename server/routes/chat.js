@@ -28,22 +28,16 @@ router.get('/loadChat', function(req, res, next){
 		}
 	})
 	.then((chats)=>{
-		console.log('CHATSSSSS', chats);
 		res.send(chats)
 	})
 })
 
 router.post('/addChat/:mentorId', function(req, res, next){
-	console.log('WHAT')
-	console.log(req.params.mentorId);
-	console.log(req.session.userId);
 
 	var mentor = User.findById(req.params.mentorId);
 	var mentee = User.findById(req.session.userId);
 	Promise.all([mentor,mentee])
 	.spread((mentor, mentee)=>{
-		console.log('MENTOR',mentor.alias)
-		console.log('MENTEE',mentee.alias)
 		var info = {
 				MenteeId: req.session.userId,
 				MentorId: req.params.mentorId,

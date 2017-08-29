@@ -24,7 +24,6 @@ router.get('/getMessages/:room', function(req,res,next){
 		}
 	})
 	.then((chat)=>{
-		console.log('CHAT WE FOUND', chat.id)
 		return Messages.findAll({
 			where: {
 				chatAppId: chat.id
@@ -32,7 +31,6 @@ router.get('/getMessages/:room', function(req,res,next){
 		})
 	})
 	.then((messages)=>{
-		console.log('MESSAGES WE FOUND', messages)
 		res.send(messages);
 	})
 })

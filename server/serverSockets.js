@@ -4,13 +4,17 @@ module.exports = io => {
 
     console.log(socket.id, ' has made a persistent connection to the server!');
 
-    socket.on('new-message', message => {
-      socket.broadcast.emit('new-message', message);
+    socket.on('message', room => {
+    	
+      socket.broadcast.to(room).emit('message', room)
     });
 
-    socket.on('new-channel', channel => {
-      socket.broadcast.emit('new-channel', channel);
-    });
+    socket.on('joinRoom', function(roomName){
+    	socket.join(roomName);
+    	console.log('joined room:', roomName)
+    })
+
+    
 
   });
 

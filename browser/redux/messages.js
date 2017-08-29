@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
+import socket from '../clientSocket';
 
 /* ------------------    ACTIONS    --------------------- */
 
@@ -35,6 +36,7 @@ export const add = (body, room) => dispatch =>{
 		.then(user=>{
 			console.log('WHAT BACKEND MADE',user);
 			dispatch(addMess(user))
+			socket.emit('message', room);
 		})
 }
 

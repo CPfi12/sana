@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {login} from '../redux/auth.js';
 import { connect } from 'react-redux';
 import {add, load} from '../redux/messages.js';
+import socket from '../clientSocket'
 
 class Chat extends Component {
 
@@ -12,12 +13,17 @@ class Chat extends Component {
   componentDidMount(){
     console.log('MOUNTING CHAT', this.props)
     this.props.loadMessages(this.props.room);
+    //why is window.location.pathname not what we think
+    console.log(socket, window.location.pathname);
+    socket.emit('joinRoom', this.props.room);
   }
 
   componentWillReceiveProps(nextProps){
     console.log('RECEIVING THE PROPS')
-      if(this.props.room!==nextProps.room)
+      if(this.props.room!==nextProps.room){
         this.props.loadMessages(nextProps.room);
+        socket.emit('joinRoom', nextProps.room);
+      }
   }
 
 
