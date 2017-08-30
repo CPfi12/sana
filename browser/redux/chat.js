@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
-
+import socket from '../clientSocket';
 /* ------------------    ACTIONS    --------------------- */
 
 const ADD = 'ADD_CHAT'
@@ -37,6 +37,7 @@ export const addChat = (mentorId) => dispatch =>{
 			console.log(chat);
 			console.log(chat[0]);
 			dispatch(add(chat))
+			socket.emit('add-chat');
 		})
 }
 

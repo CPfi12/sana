@@ -14,6 +14,12 @@ module.exports = io => {
     	console.log('joined room:', roomName)
     })
 
+    socket.on('add-chat', function(){
+    	console.log('2!!!!!!')
+    	//socket.broadcast.emit('add-chat');
+    	socket.broadcast.emit('add-chat');
+    })
+
     
 
   });
