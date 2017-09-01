@@ -22,7 +22,7 @@ class Sidebar extends Component {
   
 
   render () {
-    console.log('RENDERINGGGGG', this.props)
+    console.log('SIDEBAR RERENDERING', this.props.currentChats);
     return (
       <div id="sidebar-wrapper">
        <sidebar>
@@ -31,12 +31,21 @@ class Sidebar extends Component {
             CHATS
             <ul>
           {
-            this.props.currentChats.map((chat)=>{
+            //this.props.currentChats.length && this.props.currentChats.map((chat)=>{
+              this.props.currentChats.map((chat)=>{
+                console.log('IN LOOP', chat)
+                console.log('chat', chat);
                 var nameArr = chat.thing.split('_');
                 var name = (nameArr[0]===this.props.currentUser.alias) ? nameArr[1] : nameArr[0];
+                /*let Mentor = chat.Mentor;
+                let Mentee = chat.Mentee;
+                let budObj = (Mentee.name===name) ? Mentee : Mentor;
+                let status = (budObj.isOnline) ? '+' : '-'; */
                 var exp = `/chat/${chat.thing}`
                 console.log(exp);
-                return (<li key={chat.thing}><NavLink to={exp}>{name}</NavLink></li>) 
+                let status = '+'
+                
+                return (<li key={chat.thing}><NavLink to={exp}>{name}{status}</NavLink></li>) 
             })
           }
           </ul>

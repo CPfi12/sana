@@ -45,7 +45,6 @@ class AddChat extends Component {
 
 //----------- CONTAINER ------------
 const mapState = (state) => {
-  console.log(state)
   return ({ possBuds: state.buds })};
 
 const mapDispatch = function (dispatch) {

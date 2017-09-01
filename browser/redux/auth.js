@@ -34,7 +34,6 @@ export const signin = user => dispatch =>{
 	return axios.post('/auth/signup', user)
 	    .then(res=>res.data)
 		.then(user=>{
-			console.log('WHAT BACKEND MADE',user);
 			dispatch(set(user))
 		})
 }
@@ -42,7 +41,6 @@ export const logout = user => dispatch =>{
 	return axios.post('/auth/remove')
 		.then(res=>res.data)
 		.then(res=>{
-			console.log(res);
 			dispatch(remove())
 		})
 }
@@ -61,7 +59,6 @@ export const login = credentials => dispatch => {
   return axios.post('/auth/login', credentials)
   .then(res=>res.data)
   .then(user => {
-  	console.log('got a user!!')
     dispatch(set(user));
     
   });

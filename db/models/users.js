@@ -6,7 +6,11 @@ const User = db.define('user', {
   name: Sequelize.STRING,
   password: Sequelize.STRING,
   role: Sequelize.STRING,
-  alias: Sequelize.STRING
+  alias: Sequelize.STRING,
+  isOnline: {
+  	type: Sequelize.BOOLEAN,
+  	defaultValue: true
+  }
   //role: Sequelize.ENUM('Student', 'Peer Counselor', 'Healthcare Professional', 'Admin')
 })
 

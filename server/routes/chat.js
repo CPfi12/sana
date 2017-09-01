@@ -25,7 +25,11 @@ router.get('/loadChat', function(req, res, next){
 	ChatApp.findAll({
 		where:{
 			$or: [{MentorId: req.session.userId}, {MenteeId: req.session.userId}] 
-		}
+		},
+		include: [
+    		{ model: User, as: 'Mentor' },
+    		{ model: User, as: 'Mentee' }
+  		]
 	})
 	.then((chats)=>{
 		res.send(chats)
@@ -43,8 +47,18 @@ router.post('/addChat/:mentorId', function(req, res, next){
 				MentorId: req.params.mentorId,
 				thing: mentor.alias+'_'+mentee.alias
 		}
-		console.log(info);
 		return ChatApp.create(info) 
+	})
+	.then((chat)=>{
+		return ChatApp.findOne({
+			where:{
+				id: chat.id 
+			},
+		include: [
+    			{ model: User, as: 'Mentor' },
+    			{ model: User, as: 'Mentee' }
+  			]
+		})
 	})
 	.then((chat)=>{
 		res.send(chat);

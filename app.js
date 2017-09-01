@@ -40,7 +40,7 @@ app.use('/messages', require('./server/routes/messages'));
 
 const port = process.env.PORT || 3000;
 var server;
-db.sync()
+db.sync({force: true})
   .then(function(){
     server = app.listen(port, function(){
     	console.log('Listening on 3000???')
