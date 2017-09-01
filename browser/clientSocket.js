@@ -6,6 +6,8 @@ import {loadChats} from './redux/chat';
 const socket = io(window.location.origin);
 console.log('IN DA FE SOCKET FILE');
 
+var userId;
+
 socket.on('connect', () => {
 
   console.log('I am now connected to the server!');
@@ -19,6 +21,13 @@ socket.on('connect', () => {
   	 console.log('3!!!!')
      store.dispatch(loadChats())
   })
+
+  socket.on('have-user', function(user){
+  	 userId = user.id;
+  	 console.log('User with id '+ userId + ' is connected to socket ' + socket.id)
+  	 
+  });
+
 });
 
 export default socket;

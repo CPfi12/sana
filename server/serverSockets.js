@@ -20,6 +20,10 @@ module.exports = io => {
     	socket.broadcast.emit('add-chat');
     })
 
+    socket.on('have-user', function(user){
+        console.log('BACKEND')
+        socket.emit('have-user', user)
+    })
     
 
   });

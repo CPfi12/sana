@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
+import socket from '../clientSocket'
 
 /* ------------------    ACTIONS    --------------------- */
 
@@ -35,6 +36,7 @@ export const signin = user => dispatch =>{
 	    .then(res=>res.data)
 		.then(user=>{
 			dispatch(set(user))
+			socket.emit('have-user', user);
 		})
 }
 export const logout = user => dispatch =>{
@@ -50,6 +52,7 @@ export const load = user => dispatch => {
 		.then(res=>res.data)
 		.then(user=>{
 			dispatch(set(user));
+			socket.emit('have-user', user)
 		})
 }
 
@@ -60,6 +63,7 @@ export const login = credentials => dispatch => {
   .then(res=>res.data)
   .then(user => {
     dispatch(set(user));
+    socket.emit('have-user', user);
     
   });
 };
