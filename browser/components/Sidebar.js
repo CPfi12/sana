@@ -37,13 +37,13 @@ class Sidebar extends Component {
                 console.log('chat', chat);
                 var nameArr = chat.thing.split('_');
                 var name = (nameArr[0]===this.props.currentUser.alias) ? nameArr[1] : nameArr[0];
-                /*let Mentor = chat.Mentor;
+                let Mentor = chat.Mentor;
                 let Mentee = chat.Mentee;
                 let budObj = (Mentee.name===name) ? Mentee : Mentor;
-                let status = (budObj.isOnline) ? '+' : '-'; */
+                let status = (budObj.isOnline) ? '+' : '-'; 
                 var exp = `/chat/${chat.thing}`
                 console.log(exp);
-                let status = '+'
+                //let status = '+'
                 
                 return (<li key={chat.thing}><NavLink to={exp}>{name}{status}</NavLink></li>) 
             })
