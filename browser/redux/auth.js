@@ -57,9 +57,15 @@ export const load = user => dispatch => {
 	return axios.get('/auth/onLoad')
 		.then(res=>res.data)
 		.then(user=>{
+			console.log('USER IN LOAD', user)
 			dispatch(set(user));
 			socket.emit('have-user', user)
+			//return axios.put('/online/toggle/'+user.id)
 		})
+		/*.then(()=>{
+			console.log('toggling load!')
+			socket.emit('toggle')
+		})*/
 }
 
 
@@ -70,6 +76,10 @@ export const login = credentials => dispatch => {
   .then(user => {
     dispatch(set(user));
     socket.emit('have-user', user);
-    
+    console.log('LOGIN USER', user)
+    return axios.put('/online/toggle/'+user.id)
+  })
+  .then(()=>{
+  		socket.emit('toggle')
   });
 };

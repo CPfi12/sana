@@ -39,14 +39,14 @@ class Sidebar extends Component {
                 var name = (nameArr[0]===this.props.currentUser.alias) ? nameArr[1] : nameArr[0];
                 let Mentor = chat.Mentor;
                 let Mentee = chat.Mentee;
-                console.log('Mentee', Mentee);
-                console.log('Mentor', Mentor);
+                //console.log('Mentee', Mentee);
+                //console.log('Mentor', Mentor);
                 let budObj = (Mentee.alias===name) ? Mentee : Mentor;
                 let status = (budObj.isOnline) ? '+' : '-';
-                console.log('NAME: ', name);
-                console.log('budObj: ', budObj); 
+                //console.log('NAME: ', name);
+                //console.log('budObj: ', budObj); 
                 var exp = `/chat/${chat.thing}`
-                console.log(exp);
+                //console.log(exp);
                 //let status = '+'
                 
                 return (<li key={chat.thing}><NavLink to={exp}>{name}{status}</NavLink></li>) 

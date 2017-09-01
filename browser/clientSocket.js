@@ -29,6 +29,7 @@ socket.on('connect', () => {
   });
 
   socket.on('toggle', function(){
+  	console.log('TOGGLE FINAL')
   	store.dispatch(loadChats());
   })
 
