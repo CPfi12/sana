@@ -33,14 +33,18 @@ class Sidebar extends Component {
           {
             //this.props.currentChats.length && this.props.currentChats.map((chat)=>{
               this.props.currentChats.map((chat)=>{
-                console.log('IN LOOP', chat)
-                console.log('chat', chat);
+                //console.log('IN LOOP', chat)
+                //console.log('chat', chat);
                 var nameArr = chat.thing.split('_');
                 var name = (nameArr[0]===this.props.currentUser.alias) ? nameArr[1] : nameArr[0];
                 let Mentor = chat.Mentor;
                 let Mentee = chat.Mentee;
-                let budObj = (Mentee.name===name) ? Mentee : Mentor;
-                let status = (budObj.isOnline) ? '+' : '-'; 
+                console.log('Mentee', Mentee);
+                console.log('Mentor', Mentor);
+                let budObj = (Mentee.alias===name) ? Mentee : Mentor;
+                let status = (budObj.isOnline) ? '+' : '-';
+                console.log('NAME: ', name);
+                console.log('budObj: ', budObj); 
                 var exp = `/chat/${chat.thing}`
                 console.log(exp);
                 //let status = '+'

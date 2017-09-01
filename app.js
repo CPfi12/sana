@@ -36,6 +36,7 @@ app.use('/api', require('./server/routes'));
 app.use('/chat', require('./server/routes/chat'));
 app.use('/auth', require('./server/routes/auth'));
 app.use('/messages', require('./server/routes/messages'));
+app.use('/online', require('./server/routes/online'));
 
 
 const port = process.env.PORT || 3000;

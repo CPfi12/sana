@@ -11,8 +11,9 @@ class Navbar extends Component {
     this.onClick = this.onClick.bind(this)
   }
 
-  onClick(){
-      this.props.removeUser();
+  onClick(userId){
+      console.log('IN ONCLICK', userId)
+      this.props.removeUser(userId);
   }
 
   render () {
@@ -22,7 +23,7 @@ class Navbar extends Component {
         <nav className="navbar navbar-default">
           <div className="container-fluid">
             <div className="navbar-header">
-              <Link className="navbar-brand" to='/'>ikke.</Link>
+              <Link className="navbar-brand" to='/'>sana.</Link>
             </div>
           <ul className="nav navbar-nav">
                 <li><Link to="/">Home</Link></li>
@@ -40,7 +41,7 @@ class Navbar extends Component {
             </ul>
             :
             <ul className="nav navbar-nav navbar-right">
-                <li><a href="#" onClick={this.onClick}><span className="glyphicon glyphicon-log-out"></span> Sign Out</a></li>
+                <li><a href="#" onClick={()=>{this.onClick(this.props.currentUser.id)}}><span className="glyphicon glyphicon-log-out"></span> Sign Out</a></li>
                 <li><span className="navbar-text">{this.props.currentUser.name} ( {this.props.currentUser.alias} )</span></li>
             </ul>
           }
@@ -60,8 +61,8 @@ const mapState = (state) => {
 
 const mapDispatch = function (dispatch) {
   return {
-    removeUser() {
-      dispatch(logout());
+    removeUser(userId) {
+      dispatch(logout(userId));
     }
   };
 };

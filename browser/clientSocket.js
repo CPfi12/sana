@@ -28,6 +28,10 @@ socket.on('connect', () => {
   	 
   });
 
+  socket.on('toggle', function(){
+  	store.dispatch(loadChats());
+  })
+
 });
 
 export default socket;

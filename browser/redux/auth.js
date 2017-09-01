@@ -39,11 +39,17 @@ export const signin = user => dispatch =>{
 			socket.emit('have-user', user);
 		})
 }
-export const logout = user => dispatch =>{
+export const logout = userId => dispatch =>{
+	console.log('USERID IN REDUX', userId)
 	return axios.post('/auth/remove')
 		.then(res=>res.data)
 		.then(res=>{
+			console.log('USERID IN 2', userId)
 			dispatch(remove())
+			return axios.put('/online/toggle/'+userId)
+		})
+		.then(()=>{
+			socket.emit('toggle')
 		})
 }
 

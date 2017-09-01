@@ -24,6 +24,10 @@ module.exports = io => {
         console.log('BACKEND')
         socket.emit('have-user', user)
     })
+
+    socket.on('toggle', function( ){
+        io.emit('toggle')
+    })
     
 
   });
