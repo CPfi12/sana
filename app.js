@@ -15,7 +15,7 @@ const session = require('express-session');
 console.log(User);
 console.log(Chat);
 //middleware
-app.use(morgan('dev'));
+//app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
 //bundle gets served just like any other file in the script tag -> before would serve index.html instead of bundle!
 app.use(express.static(path.join(__dirname, 'bundlefold')));

@@ -4,7 +4,6 @@ const ChatApp = require('../../db/models/chat.js');
 let Promise = require('bluebird');
 
 router.get('/loadBuds', function(req, res, next){
-	console.log(req.session.userId);
 	User.findAll({
 		where:{
 			id: {
@@ -21,7 +20,6 @@ router.get('/loadBuds', function(req, res, next){
 })
 
 router.get('/loadChat', function(req, res, next){
-	console.log('USER ID IN LOAD CHAT', req.session.userId)
 	ChatApp.findAll({
 		where:{
 			$or: [{MentorId: req.session.userId}, {MenteeId: req.session.userId}] 

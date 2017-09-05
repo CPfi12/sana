@@ -12,6 +12,7 @@ router.put('/toggle/:userId', function(req,res,next){
 		.then((updatedUser)=>{
 			res.send(updatedUser);
 		})
+		.catch(console.err);
 })
 
 module.exports = router;

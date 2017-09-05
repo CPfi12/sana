@@ -11,7 +11,9 @@ var userId;
 socket.on('connect', () => {
 
   console.log('I am now connected to the server!');
-
+  socket.on('disconnect', function(){
+  	socket.emit('to','dog');
+  })
   socket.on('message', function(room){
   	    console.log('console has received message');
   		store.dispatch(load(room))

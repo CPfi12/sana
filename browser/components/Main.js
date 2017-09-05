@@ -19,7 +19,7 @@ class Main extends Component {
 
   componentDidMount () {
     this.props.load();
-    
+    console.log('MOUNTING IN MAIN')
   }
 
   render () {

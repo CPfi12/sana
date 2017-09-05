@@ -15,7 +15,6 @@ router.post('/login', function(req, res, next){
 		}
 	})
 	.then((user)=>{
-		console.log(user)
 		req.session.userId = user.id;
 		res.send(user);
 	})
@@ -38,7 +37,6 @@ router.post('/remove', function(req,res,next){
 })
 
 router.post('/signup', function(req,res,next){
-	console.log('in signup route!!')
 	User.create(req.body)
 		.then((user)=>{
 			req.session.userId = user.id;

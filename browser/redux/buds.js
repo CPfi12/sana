@@ -24,7 +24,6 @@ export default function reducer (buds = [], action) {
 }
 
 export const loadBuds = () => dispatch =>{
-	console.log('loading da buds')
 	return axios.get('/chat/loadBuds')
 	    .then(res=>res.data)
 		.then(buds=>{
