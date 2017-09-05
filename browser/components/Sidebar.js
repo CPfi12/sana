@@ -24,6 +24,7 @@ class Sidebar extends Component {
   render () {
     console.log('SIDEBAR RERENDERING', this.props.currentChats);
     return (
+
       <div id="sidebar-wrapper">
        <sidebar>
         <section>
@@ -43,13 +44,14 @@ class Sidebar extends Component {
                 //console.log('Mentor', Mentor);
                 let budObj = (Mentee.alias===name) ? Mentee : Mentor;
                 let status = (budObj.isOnline) ? '+' : '-';
+                let classNom = (status==='+') ? 'online' : 'offline';
                 //console.log('NAME: ', name);
                 //console.log('budObj: ', budObj); 
                 var exp = `/chat/${chat.thing}`
                 //console.log(exp);
                 //let status = '+'
                 
-                return (<li key={chat.thing}><NavLink to={exp}>{name}{status}</NavLink></li>) 
+                return (<li key={chat.thing} className={classNom}><NavLink to={exp}>{name}{status}</NavLink></li>) 
             })
           }
           </ul>

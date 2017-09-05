@@ -33,7 +33,7 @@ class Main extends Component {
         </div>
         <div className="row">
         {this.props.currentUser ? 
-          <div className="col-xs-2">
+          <div className="col-xs-2 sidebar">
           <Router>
             <Sidebar/>
           </Router>

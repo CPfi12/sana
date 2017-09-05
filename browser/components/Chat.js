@@ -31,7 +31,7 @@ class Chat extends Component {
     console.log('PROPPPPPP',this.props);
 
     return(
-      <div>
+      <div className="chat">
       
     <ul>
     {
