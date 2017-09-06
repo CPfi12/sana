@@ -3,11 +3,14 @@ import {login} from '../redux/auth.js';
 import { connect } from 'react-redux';
 import {loadBuds} from '../redux/buds.js';
 import {addChat} from '../redux/chat.js';
+import {change} from '../redux/filter.js';
 
 class AddChat extends Component {
 
   constructor (props) {
     super(props);
+    this.onSubmit = this.onSubmit.bind(this);
+    this.contains = this.contains.bind(this);
   }
 
   componentDidMount(){
@@ -15,11 +18,46 @@ class AddChat extends Component {
     this.props.getBuds();
   }
 
+  onSubmit(evt){
+    evt.preventDefault();
+    let val = evt.target.sel.value;
+    console.log('ABOUT TO SUBMIT', val)
+    this.props.change(val);
+
+  }
+
+  contains(a,b){
+      var obj={};
+        for(var i=0;i<b.length;i++){
+            obj[b[i]]=obj[b[i]]||0;
+            obj[b[i]]++;
+        }
+        for(var i=0;i<a.length;i++){
+            if(obj[a[i]])
+            obj[a[i]]--
+        }
+        for(var key in obj){
+            if(obj[key]>0)
+            return false
+        }
+        return true;
+  }
+
   render () {
-    var peer = this.props.possBuds.filter((bud)=> (bud.role==='Peer Counselor'));
-    var med = this.props.possBuds.filter((bud)=> (bud.role==='Healthcare Professional')); 
+    var peer, med;
+    if(this.props.filter.length>0){
+        peer = this.props.possBuds.filter((bud)=> (bud.role==='Peer Counselor'&&this.contains(bud.tags,this.props.filter)));
+        med = this.props.possBuds.filter((bud)=> (bud.role==='Healthcare Professional'&&this.contains(bud.tags,this.props.filter))); 
+    }
+    else{
+        peer = this.props.possBuds.filter((bud)=> (bud.role==='Peer Counselor'));
+        med = this.props.possBuds.filter((bud)=> (bud.role==='Healthcare Professional')); 
+    }
+
     return (
-      <div>
+      <div className='row'>
+      
+      <div className='col-xs-4'>
         <span className='role'>Peer Counselors</span>
         <ul>
         {
@@ -35,9 +73,30 @@ class AddChat extends Component {
             return (<li onClick={()=>{this.props.addNewChat(bud.id)}} key={bud.id}><a> {bud.alias} </a></li>)
           })
         }
-        </ul>
-        
-        
+        </ul> 
+      </div>
+      <div className='col-xs-4'>
+        <form onSubmit={this.onSubmit}>
+        <label>
+          Sort by:
+          <select name='sel'>
+            {
+              this.props.struggles && this.props.struggles.map((strug)=>{
+                return (<option value={strug.topic}>{strug.topic}</option>)
+              })
+            }  
+          </select>
+        </label>
+        <input type="submit" value="Submit" className='btn'/>
+      </form>
+      <ul>
+      {
+        this.props.filter.length && this.props.filter.map((topic)=>{
+          return(<li onClick={()=>{this.props.change(topic)}}>{topic}</li>)
+        })
+      }
+      </ul>
+      </div>
       </div>
     );
   }
@@ -45,7 +104,9 @@ class AddChat extends Component {
 
 //----------- CONTAINER ------------
 const mapState = (state) => {
-  return ({ possBuds: state.buds })};
+  return ({ possBuds: state.buds,
+            struggles: state.struggles,
+            filter: state.filter })};
 
 const mapDispatch = function (dispatch) {
   return {
@@ -54,6 +115,9 @@ const mapDispatch = function (dispatch) {
     },
     addNewChat: (mentorId)=>{
       dispatch(addChat(mentorId))
+    },
+    change: (topic)=>{
+      dispatch(change(topic))
     }
   };
 };
