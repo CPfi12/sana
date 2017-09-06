@@ -32,7 +32,7 @@ module.exports = io => {
     })
 
     socket.on('to', function(th){
-        console.log('got', th)
+        //console.log('got', th)
     })
 
     socket.on('add-chat', function(){

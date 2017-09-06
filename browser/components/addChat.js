@@ -20,7 +20,7 @@ class AddChat extends Component {
     var med = this.props.possBuds.filter((bud)=> (bud.role==='Healthcare Professional')); 
     return (
       <div>
-        Peer Counselors
+        <span className='role'>Peer Counselors</span>
         <ul>
         {
           peer.map((bud)=>{
@@ -28,7 +28,7 @@ class AddChat extends Component {
           })
         }
         </ul>
-        Healthcare Professional
+        <span className='role'>Healthcare Professional</span>
         <ul>
         {
           med.map((bud)=>{

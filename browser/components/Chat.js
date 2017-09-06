@@ -36,16 +36,22 @@ class Chat extends Component {
     <ul>
     {
       this.props.messages.map((message)=>{
-        return (<li><span>{message.authorAlias}: {message.content}</span></li>)
+        return (
+              <div>
+                <li className='chatMess'><span className='authorName'>{message.authorAlias}:</span></li>
+                <li className='chatMess'><span className='authorMess'> {message.content}</span></li>
+              </div>
+              )
+              
       })
     }
     </ul>
       <form onSubmit={(evt)=>{this.props.onSubmit(evt, this.props.currentUser.alias, this.props.room)}}>
         <label>
         Message:
-            <input type="text" name="mess" />
+            <input type="text" name="mess" className='form-control'/>
         </label>
-        <input type="submit" value="Submit" />
+        <input type="submit" value="Submit" className='btn'/>
       </form>
       </div>
     );

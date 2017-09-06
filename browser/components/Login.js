@@ -28,22 +28,24 @@ class Login extends Component {
     return (
       <div>
       {!this.props.currentUser ? 
-      (<div>
+      (<div className='center'>
       <h3> Log In {this.props.currentUser}</h3>
      
        <form onSubmit={this.onSubmit}>
         <label>
             Name:
-            <input type="text" name="name" />
+            <input type="text" name="name" className='form-control' />
         </label>
+        <br/>
          <label>
             Password:
-            <input type="text" name="pass" />
+            <input type="text" name="pass" className='form-control' />
         </label>
-        <input type="submit" value="Submit" />
+        <br/>
+        <input type="submit" value="Submit" className='btn' />
       </form>
       </div>) :
-      (<h1>{this.props.currentUser.name}</h1>)}
+      (<h1>Welcome {this.props.currentUser.name}!</h1>)}
       </div>
     );
   }

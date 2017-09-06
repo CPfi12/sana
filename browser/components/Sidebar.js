@@ -51,7 +51,7 @@ class Sidebar extends Component {
                 //console.log(exp);
                 //let status = '+'
                 
-                return (<li key={chat.thing} className={classNom}><NavLink to={exp}>{name}{status}</NavLink></li>) 
+                return (<li key={chat.thing} className={classNom}><NavLink to={exp}><span className='buds'>{name}{status}</span></NavLink></li>) 
             })
           }
           </ul>

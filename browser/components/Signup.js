@@ -32,28 +32,31 @@ class Signup extends Component {
     return (
       <div>
       {!this.props.currentUser ? 
-      (<div>
+      (<div className='center'>
       <h3> Sign Up {this.props.currentUser}</h3>
      
        <form onSubmit={this.onSubmit}>
         <label>
             Name:
-            <input type="text" name="name" />
+            <input type="text" name="name" className='form-control'/>
         </label>
+        <br/>
          <label>
             Password:
-            <input type="text" name="pass" />
+            <input type="text" name="pass" className='form-control'/>
         </label>
+        <br/>
         <label>
             Role:
-            <select name="role">
+            <select name="role" className='form-control'>
               <option value="Student">Student</option>
               <option value="Peer Counselor">Peer Counselor</option>
               <option value="Healthcare Professional">Healthcare Professional</option>
               <option value="Admin">Admin</option>
             </select>
         </label>
-        <input type="submit" value="Submit" />
+        <br/>
+        <input type="submit" value="Submit" className='btn'/>
       </form>
       </div>) :
       (<h1>{this.props.currentUser.name}</h1>)}

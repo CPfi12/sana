@@ -33,6 +33,16 @@ span{
 	font-size: 20px;
 }
 
+.role{
+	color: #1695A3;
+	font-family: 'Poiret One', cursive;
+	font-weight: bold;
+}
+
+.buds{
+    font-family: 'Poiret One', cursive;
+	color: 45A9F5;
+}
 body{
 	background-color: #EBFAFF
 }
@@ -40,7 +50,40 @@ h4{
 	color: #ACF0F2;
 	font-family: 'Poiret One', cursive;
 }
+h1{
+	color: #45A9F5;
+	font-family: 'Poiret One', cursive;
+	font-weight: bold;
+}
+h3{
+	color: #45A9F5;
+	font-family: 'Poiret One', cursive;
+	font-weight: bold;
+}
+label{
+	color: #45A9F5;
+	font-family: 'Poiret One', cursive;
+}
 
 .col-xs-2{
 	background-color: #225378
+}
+.center{
+	margin: 0 auto;
+	text-align: center
+}
+.chatMess{
+	list-style:none;
+}
+.authorName{
+	color: #245F8A;
+	font-family: 'Roboto', sans-serif;
+	font-weight: bold;
+	font-size: 12px;	
+}
+.authorMess{
+	color: #3489C7;
+	font-family: 'Roboto', sans-serif;
+	font-weight: bold;
+	font-size: 15px;	
 }
