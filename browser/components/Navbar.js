@@ -42,7 +42,7 @@ class Navbar extends Component {
             :
             <ul className="nav navbar-nav navbar-right">
                 <li><a href="#" onClick={()=>{this.onClick(this.props.currentUser.id)}}><span className="glyphicon glyphicon-log-out"></span><span>Sign Out</span></a></li>
-                <li><span className="navbar-text"><span>{this.props.currentUser.name} ( {this.props.currentUser.alias} )</span></span></li>
+                <li><span className="navbar-text"><Link to='/profile'><span>{this.props.currentUser.name} ( {this.props.currentUser.alias} )</span></Link></span></li>
             </ul>
           }
             

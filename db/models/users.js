@@ -10,6 +10,20 @@ const User = db.define('user', {
   isOnline: {
   	type: Sequelize.BOOLEAN,
   	defaultValue: true
+  },
+  tags:{
+  	type: Sequelize.ARRAY(Sequelize.STRING),
+  	defaultValue: [],
+  	set(tag) {
+      let list = this.getDataValue('tags').slice();
+      if(list.indexOf(tag)===-1)
+      	list.push(tag);
+      else{
+      	let index = list.indexOf(tag);
+      	list.splice(index,1)
+      }
+      this.setDataValue('tags', list);
+    },
   }
   //role: Sequelize.ENUM('Student', 'Peer Counselor', 'Healthcare Professional', 'Admin')
 })

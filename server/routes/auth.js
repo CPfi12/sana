@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const User = require('../../db/models/users.js');
-
+const Struggle = require('../../db/models/struggle.js')
 const alias = ['Arendal', 'Bergen', 'Bodø', 'Drammen', 'Egersund', 'Farsund', 'Flekkefjord', 'Florø', 'Fredrikstad', 'Gjøvik'];
 
 router.get('/', function(req,res,next){
@@ -12,7 +12,8 @@ router.post('/login', function(req, res, next){
 		where:{
 			name: req.body.name,
 			password: req.body.password
-		}
+		},
+		include: [Struggle]
 	})
 	.then((user)=>{
 		req.session.userId = user.id;

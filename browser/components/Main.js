@@ -7,8 +7,10 @@ import Signup from './Signup';
 import Sidebar from './Sidebar';
 import AddChat from './addChat';
 import Chat from './Chat';
+import Profile from './Profile'
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import { load } from '../redux/auth';
+import {loadStrug} from '../redux/struggles';
 import socket from '../clientSocket.js';
 
 class Main extends Component {
@@ -18,7 +20,9 @@ class Main extends Component {
   }
 
   componentDidMount () {
+    console.log('RERENDERING MAIN AT ALL????')
     this.props.load();
+    this.props.loadStrug();
     console.log('MOUNTING IN MAIN')
   }
 
@@ -44,7 +48,8 @@ class Main extends Component {
               <Route exact path="/login" component={Login} />
               <Route exact path="/signup" component={Signup} />
               <Route exact path="/addChat" component={AddChat}/>
-              <Route exact path="/chat/:room" component={Chat}/> 
+              <Route exact path="/chat/:room" component={Chat}/>
+              <Route exact path="/profile" component={Profile}/>  
               <Route component={Home} />
           </Switch>
        </Router>
@@ -63,6 +68,9 @@ const mapState = (state) => {
 const mapDispatch = dispatch => ({
   load: () => {
     dispatch(load());
+  },
+  loadStrug:()=>{
+    dispatch(loadStrug())
   }
 });
 

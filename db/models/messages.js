@@ -6,7 +6,6 @@ const Messages = db.define('messages',{
 	content: Sequelize.TEXT
 })
 
-console.log('MESSAGES');
 
 
 module.exports = Messages;
