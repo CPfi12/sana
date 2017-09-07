@@ -29,10 +29,16 @@ class Chat extends Component {
 
   render () {
     console.log('PROPPPPPP',this.props);
-
+    
+    let budName='';
+    if(this.props.room && this.props.currentUser){
+      let roomName = this.props.room.split('_');
+      budName = (roomName[0]===this.props.currentUser.name) ? roomName[0] : roomName[1]; 
+    }
     return(
-      <div className="chat">
-      
+      <div>
+      <h3>{budName}</h3>
+     <div id='chatchat' className='chat'> 
     <ul>
     {
       this.props.messages.map((message)=>{
@@ -46,12 +52,13 @@ class Chat extends Component {
       })
     }
     </ul>
+    </div>
       <form onSubmit={(evt)=>{this.props.onSubmit(evt, this.props.currentUser.alias, this.props.room)}}>
-        <label>
+        <label className='role'>
         Message:
             <input type="text" name="mess" className='form-control'/>
         </label>
-        <input type="submit" value="Submit" className='btn'/>
+        <input type="submit" value="Submit" className='btn btn-info'/>
       </form>
       </div>
     );

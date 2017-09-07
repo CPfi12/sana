@@ -42,7 +42,7 @@ class Login extends Component {
             <input type="text" name="pass" className='form-control' />
         </label>
         <br/>
-        <input type="submit" value="Submit" className='btn' />
+        <input type="submit" value="Submit" className='btn btn-primary' />
       </form>
       </div>) :
       (<h1>Welcome {this.props.currentUser.name}!</h1>)}

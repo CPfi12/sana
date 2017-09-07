@@ -62,7 +62,7 @@ class AddChat extends Component {
         <ul>
         {
           peer.map((bud)=>{
-            return (<li onClick={()=>{this.props.addNewChat(bud.id)}} key={bud.id}><a> {bud.alias} </a> </li>)
+            return (<li className='bud-list' onClick={()=>{this.props.addNewChat(bud.id)}} key={bud.id}><a><span className='bud-list'> {bud.alias} </span></a> </li>)
           })
         }
         </ul>
@@ -70,14 +70,14 @@ class AddChat extends Component {
         <ul>
         {
           med.map((bud)=>{
-            return (<li onClick={()=>{this.props.addNewChat(bud.id)}} key={bud.id}><a> {bud.alias} </a></li>)
+            return (<li onClick={()=>{this.props.addNewChat(bud.id)}} key={bud.id}><a className='bud-list'><span className='bud-list'> {bud.alias}</span></a></li>)
           })
         }
         </ul> 
       </div>
       <div className='col-xs-4'>
         <form onSubmit={this.onSubmit}>
-        <label>
+        <label className='role'>
           Sort by:
           <select name='sel'>
             {
@@ -87,15 +87,13 @@ class AddChat extends Component {
             }  
           </select>
         </label>
-        <input type="submit" value="Submit" className='btn'/>
+        <input type="submit" value="Submit" className='btn btn-primary space'/>
       </form>
-      <ul>
       {
-        this.props.filter.length && this.props.filter.map((topic)=>{
-          return(<li onClick={()=>{this.props.change(topic)}}>{topic}</li>)
-        })
+        this.props.filter.length ? this.props.filter.map((topic)=>{
+          return(<div><button onClick={()=>{this.props.change(topic)}} className='btn btn-info'>{topic} X </button></div>)
+        }) : null
       }
-      </ul>
       </div>
       </div>
     );

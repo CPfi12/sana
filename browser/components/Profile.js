@@ -36,7 +36,7 @@ class Profile extends Component {
           <h4 className='medblue'>Alias:{this.props.currentUser.alias}</h4>
           {
             this.props.struggles.map((strug)=>{
-              var btnType = (this.props.pers.indexOf(strug.topic)!==-1) ? 'btn btn-primary' : 'btn-btn-default';
+              var btnType = (this.props.pers.indexOf(strug.topic)!==-1) ? 'btn btn-primary space' : 'btn btn-secondary space';
               console.log('btnType', btnType)
               return(<button type="button" onClick={()=>{this.props.addPers(this.props.currentUser.id,strug.id)}} className={btnType}>{strug.topic}</button>);
             })

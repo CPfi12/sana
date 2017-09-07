@@ -56,7 +56,7 @@ class Signup extends Component {
             </select>
         </label>
         <br/>
-        <input type="submit" value="Submit" className='btn'/>
+        <input type="submit" value="Submit" className='btn btn-primary'/>
       </form>
       </div>) :
       (<h1>{this.props.currentUser.name}</h1>)}

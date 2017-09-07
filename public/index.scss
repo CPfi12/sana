@@ -3,7 +3,8 @@
 }
 
 #sidebar-wrapper{
-	background-color: #225378
+	background-color: #225378;
+	height: 100vh;
 }
 .navbar-header {
 	color: red
@@ -34,7 +35,7 @@ span{
 }
 
 .role{
-	color: #1695A3;
+	color: #007acc;
 	font-family: 'Poiret One', cursive;
 	font-weight: bold;
 }
@@ -56,7 +57,7 @@ h1{
 	font-weight: bold;
 }
 h3{
-	color: #45A9F5;
+	color: #007acc;
 	font-family: 'Poiret One', cursive;
 	font-weight: bold;
 }
@@ -92,3 +93,26 @@ label{
 	color: #45A9F5;
 	font-weight: bold;
 }
+
+
+.bud-list{
+	color: #00b8e6;
+
+}
+
+.space{
+	margin-left: 3px;
+	margin-right: 3px;
+}
+
+.chat{
+	background-color: white;
+	width: 60vw;
+	height: 50vh;
+	overflow-y: scroll;
+}
+
+textarea{
+	width: 80%;
+}
+
