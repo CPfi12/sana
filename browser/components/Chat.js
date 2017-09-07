@@ -32,8 +32,10 @@ class Chat extends Component {
     
     let budName='';
     if(this.props.room && this.props.currentUser){
+      console.log(this.props.currentUser.alias);
       let roomName = this.props.room.split('_');
-      budName = (roomName[0]===this.props.currentUser.name) ? roomName[0] : roomName[1]; 
+      console.log(roomName[0], roomName[1]);
+      budName = (roomName[0]===this.props.currentUser.alias) ? roomName[1] : roomName[0]; 
     }
     return(
       <div>
@@ -58,7 +60,7 @@ class Chat extends Component {
         Message:
             <input type="text" name="mess" className='form-control'/>
         </label>
-        <input type="submit" value="Submit" className='btn btn-info'/>
+        <input type="submit" value="Submit" className='btn btn-info space'/>
       </form>
       </div>
     );

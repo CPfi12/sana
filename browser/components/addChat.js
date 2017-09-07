@@ -53,7 +53,7 @@ class AddChat extends Component {
         peer = this.props.possBuds.filter((bud)=> (bud.role==='Peer Counselor'));
         med = this.props.possBuds.filter((bud)=> (bud.role==='Healthcare Professional')); 
     }
-
+    let extra = '';
     return (
       <div className='row'>
       
@@ -62,7 +62,11 @@ class AddChat extends Component {
         <ul>
         {
           peer.map((bud)=>{
-            return (<li className='bud-list' onClick={()=>{this.props.addNewChat(bud.id)}} key={bud.id}><a><span className='bud-list'> {bud.alias} </span></a> </li>)
+            extra=''
+            console.log(bud.name,this.props.friends,bud.name,this.props.friends )
+            if(this.props.friends.indexOf(bud.name)!==-1)
+                  extra ='**'
+            return (<li className='bud-list' onClick={()=>{this.props.addNewChat(bud.id)}} key={bud.id}><a><span className='bud-list'> {bud.alias+extra} </span></a> </li>)
           })
         }
         </ul>
@@ -91,7 +95,7 @@ class AddChat extends Component {
       </form>
       {
         this.props.filter.length ? this.props.filter.map((topic)=>{
-          return(<div><button onClick={()=>{this.props.change(topic)}} className='btn btn-info'>{topic} X </button></div>)
+          return(<div><button onClick={()=>{this.props.change(topic)}} className='btn btn-info space'>{topic} X </button></div>)
         }) : null
       }
       </div>
@@ -104,7 +108,8 @@ class AddChat extends Component {
 const mapState = (state) => {
   return ({ possBuds: state.buds,
             struggles: state.struggles,
-            filter: state.filter })};
+            filter: state.filter,
+            friends: state.friends })};
 
 const mapDispatch = function (dispatch) {
   return {

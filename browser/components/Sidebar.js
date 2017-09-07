@@ -40,9 +40,12 @@ class Sidebar extends Component {
                 var name = (nameArr[0]===this.props.currentUser.alias) ? nameArr[1] : nameArr[0];
                 let Mentor = chat.Mentor;
                 let Mentee = chat.Mentee;
+
                 //console.log('Mentee', Mentee);
                 //console.log('Mentor', Mentor);
                 let budObj = (Mentee.alias===name) ? Mentee : Mentor;
+                if(this.props.friends.indexOf(budObj.name)!==-1)
+                  name+='**'
                 let status = (budObj.isOnline) ? '+' : '-';
                 let classNom = (status==='+') ? 'online' : 'offline';
                 //console.log('NAME: ', name);
@@ -51,7 +54,7 @@ class Sidebar extends Component {
                 //console.log(exp);
                 //let status = '+'
                 
-                return (<li key={chat.thing} className={classNom}><NavLink to={exp}><span className='buds'>{name}{status}</span></NavLink></li>) 
+                return (<li key={chat.thing} className={classNom}><NavLink to={exp}><span className='buds'>{name}</span></NavLink></li>) 
             })
           }
           </ul>
@@ -68,7 +71,8 @@ class Sidebar extends Component {
 //----------- CONTAINER ------------
 const mapState = (state) => {
   return ({ currentUser: state.auth,
-            currentChats: state.chat})};
+            currentChats: state.chat,
+            friends: state.friends})};
 
 const mapDispatch = dispatch => ({
       loadingChats: ()=>{
