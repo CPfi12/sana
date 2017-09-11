@@ -38,7 +38,7 @@ app.use('/auth', require('./server/routes/auth'));
 app.use('/messages', require('./server/routes/messages'));
 app.use('/online', require('./server/routes/online'));
 app.use('/strugg', require('./server/routes/strugg'));
-
+app.use('/friend', require('./server/routes/friends'));
 
 const port = process.env.PORT || 3000;
 var server;

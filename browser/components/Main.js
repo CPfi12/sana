@@ -11,6 +11,7 @@ import Profile from './Profile'
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import { load } from '../redux/auth';
 import {loadStrug} from '../redux/struggles';
+import {getFr} from '../redux/friends';
 import socket from '../clientSocket.js';
 
 class Main extends Component {
@@ -24,6 +25,20 @@ class Main extends Component {
     this.props.load();
     this.props.loadStrug();
     console.log('MOUNTING IN MAIN')
+  }
+
+  componentWillReceiveProps(nextProps){
+    console.log('CURRRRR', this.props);
+    console.log('CR@@@', nextProps.currentUser);
+    let first = this.props;
+    let sec = nextProps.currentUser;
+    console.log('first', first);
+    console.log('sec',sec);
+    if(first!==sec)
+      this.props.loadFr();
+    else
+      console.log('NOOOOOOO')
+           
   }
 
   render () {
@@ -71,6 +86,9 @@ const mapDispatch = dispatch => ({
   },
   loadStrug:()=>{
     dispatch(loadStrug())
+  },
+  loadFr:()=>{
+    dispatch(getFr());
   }
 });
 

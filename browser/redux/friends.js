@@ -7,7 +7,7 @@ const ADD = 'ADD_FRIENDS'
 
 /* --------------    ACTION CREATORS    ----------------- */
 
-export const addFr = fr => ({ type: ADD, fr });
+export const Fr = fr => ({ type: ADD, fr });
 
 
 /* ------------------    REDUCER    --------------------- */
@@ -17,11 +17,28 @@ export default function reducer (friends = [], action) {
   switch (action.type) {
 
     case ADD:
-        newF.push(action.fr);
-      	return newF;
+        //newF.push(action.fr);
+      	return action.fr;
 
     default:
       return newF;
   }
 }
 
+export const addFr = (name) => dispatch =>{
+  return axios.post('/friend',{name: name})
+      .then(res=>res.data)
+    .then(friends=>{
+      console.log('WE HAVE???', friends);
+      dispatch(Fr(friends))
+    })
+}
+
+export const getFr = (name) => dispatch =>{
+  return axios.get('/friend')
+     .then(res=>res.data)
+     .then(friends=>{
+       console.log('WE HAVE???', friends);
+       dispatch(Fr(friends))
+     })
+}
