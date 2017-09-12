@@ -14,7 +14,6 @@ class Signup extends Component {
   onSubmit(evt){
 
     evt.preventDefault();
-    console.log('onSubmit!');
     let info = {
       name: evt.target.name.value,
       password: evt.target.pass.value,
@@ -22,13 +21,11 @@ class Signup extends Component {
     }
     evt.target.name.value = '';
     evt.target.pass.value = '';
-    console.log('info!', info)
     this.props.signUpFn(info);
   }
 
 
   render () {
-    console.log('Rendering with ', this.props.currentUser, this.props);
     return (
       <div>
       {!this.props.currentUser ? 
@@ -67,7 +64,6 @@ class Signup extends Component {
 
 //----------- CONTAINER ------------
 const mapState = (state) => {
-  console.log(state)
   return ({ currentUser: state.auth })};
 
 const mapDispatch = function (dispatch) {

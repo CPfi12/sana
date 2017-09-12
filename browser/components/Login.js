@@ -12,7 +12,6 @@ class Login extends Component {
   onSubmit(evt){
 
     evt.preventDefault();
-    console.log('onSubmit!');
     let info = {
       name: evt.target.name.value,
       password: evt.target.pass.value

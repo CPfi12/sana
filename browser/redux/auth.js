@@ -18,8 +18,6 @@ export default function reducer (currentUser=null, action) {
   switch (action.type) {
 
     case SET:
-
-      //return action.user;
       	return action.user;
 
     case REMOVE:
@@ -31,7 +29,6 @@ export default function reducer (currentUser=null, action) {
 }
 
 export const signin = user => dispatch =>{
-	console.log('in signin thunk!')
 	return axios.post('/auth/signup', user)
 	    .then(res=>res.data)
 		.then(user=>{
@@ -40,7 +37,6 @@ export const signin = user => dispatch =>{
 		})
 }
 export const logout = userId => dispatch =>{
-	console.log('USERID IN REDUX', userId)
 	return axios.post('/auth/remove')
 		.then(res=>res.data)
 		.then(res=>{
@@ -53,7 +49,6 @@ export const logout = userId => dispatch =>{
 }
 
 export const load = user => dispatch => {
-	console.log('HERE AT ALL??');
 	return axios.get('/auth/onLoad')
 		.then(res=>res.data)
 		.then(user=>{

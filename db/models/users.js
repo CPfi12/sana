@@ -11,6 +11,7 @@ const User = db.define('user', {
   	type: Sequelize.BOOLEAN,
   	defaultValue: true
   },
+  description: Sequelize.TEXT,
   tags:{
   	type: Sequelize.ARRAY(Sequelize.STRING),
   	defaultValue: [],

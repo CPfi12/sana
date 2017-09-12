@@ -12,7 +12,6 @@ class Navbar extends Component {
   }
 
   onClick(userId){
-      console.log('IN ONCLICK', userId)
       this.props.removeUser(userId);
   }
 

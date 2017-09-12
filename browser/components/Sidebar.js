@@ -32,28 +32,17 @@ class Sidebar extends Component {
             CHATS
             <ul>
           {
-            //this.props.currentChats.length && this.props.currentChats.map((chat)=>{
               this.props.currentChats.map((chat)=>{
-                //console.log('IN LOOP', chat)
-                //console.log('chat', chat);
                 var nameArr = chat.thing.split('_');
                 var name = (nameArr[0]===this.props.currentUser.alias) ? nameArr[1] : nameArr[0];
                 let Mentor = chat.Mentor;
                 let Mentee = chat.Mentee;
-
-                //console.log('Mentee', Mentee);
-                //console.log('Mentor', Mentor);
                 let budObj = (Mentee.alias===name) ? Mentee : Mentor;
                 if(this.props.friends.indexOf(budObj.name)!==-1)
                   name+='**'
                 let status = (budObj.isOnline) ? '+' : '-';
-                let classNom = (status==='+') ? 'online' : 'offline';
-                //console.log('NAME: ', name);
-                //console.log('budObj: ', budObj); 
+                let classNom = (status==='+') ? 'online' : 'offline'; 
                 var exp = `/chat/${chat.thing}`
-                //console.log(exp);
-                //let status = '+'
-                
                 return (<li key={chat.thing} className={classNom}><NavLink to={exp}><span className='buds'>{name}</span></NavLink></li>) 
             })
           }

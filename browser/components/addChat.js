@@ -14,14 +14,12 @@ class AddChat extends Component {
   }
 
   componentDidMount(){
-    console.log('MOUNTING', this.props)
     this.props.getBuds();
   }
 
   onSubmit(evt){
     evt.preventDefault();
     let val = evt.target.sel.value;
-    console.log('ABOUT TO SUBMIT', val)
     this.props.change(val);
 
   }
@@ -63,7 +61,6 @@ class AddChat extends Component {
         {
           peer.map((bud)=>{
             extra=''
-            console.log(bud.name,this.props.friends,bud.name,this.props.friends )
             if(this.props.friends.indexOf(bud.name)!==-1)
                   extra ='**'
             return (<li className='bud-list' onClick={()=>{this.props.addNewChat(bud.id)}} key={bud.id}><a><span className='bud-list'> {bud.alias+extra} </span></a> </li>)

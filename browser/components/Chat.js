@@ -11,15 +11,12 @@ class Chat extends Component {
   }
 
   componentDidMount(){
-    console.log('MOUNTING CHAT', this.props)
     this.props.loadMessages(this.props.room);
     //why is window.location.pathname not what we think
-    console.log(socket, window.location.pathname);
     socket.emit('joinRoom', this.props.room);
   }
 
   componentWillReceiveProps(nextProps){
-    console.log('RECEIVING THE PROPS')
       if(this.props.room!==nextProps.room){
         this.props.loadMessages(nextProps.room);
         socket.emit('joinRoom', nextProps.room);
@@ -27,14 +24,10 @@ class Chat extends Component {
   }
 
 
-  render () {
-    console.log('PROPPPPPP',this.props);
-    
+  render () { 
     let budName='';
     if(this.props.room && this.props.currentUser){
-      console.log(this.props.currentUser.alias);
       let roomName = this.props.room.split('_');
-      console.log(roomName[0], roomName[1]);
       budName = (roomName[0]===this.props.currentUser.alias) ? roomName[1] : roomName[0]; 
     }
     return(
@@ -79,7 +72,6 @@ const mapDispatch = function (dispatch) {
     onSubmit: (evt, userName, room) =>{
       evt.preventDefault();
       var message = {authorAlias: userName, content: evt.target.mess.value}
-      console.log('FIRST MESS', message);
       evt.target.mess.value = '';
       dispatch(add(message, room))
     },
