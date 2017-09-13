@@ -36,7 +36,7 @@ export const loadDesc = () => dispatch =>{
 }
 
 export const addDesc = (desc) => dispatch =>{
-  return axios.post('/description',{description: desc})
+  return axios.post('/nlp/newDescription',{description: desc})
     .then(res=>res.data)
     .then(desc=>{
       dispatch(get(desc));

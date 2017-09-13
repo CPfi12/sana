@@ -28,6 +28,9 @@ class Profile extends Component {
         this.props.loadPers(nextProps.currentUser.id)
         this.props.loadDesc();
       }
+      if(this.props.description!==nextProps.description){
+         this.props.loadPers(nextProps.currentUser.id)
+      }
   }
 
   onSubmit(evt){

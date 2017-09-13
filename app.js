@@ -40,6 +40,7 @@ app.use('/online', require('./server/routes/online'));
 app.use('/strugg', require('./server/routes/strugg'));
 app.use('/friend', require('./server/routes/friends'));
 app.use('/description', require('./server/routes/description'));
+app.use('/nlp', require('./server/routes/nlp'));
 
 const port = process.env.PORT || 3000;
 var server;
