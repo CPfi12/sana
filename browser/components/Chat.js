@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import {login} from '../redux/auth.js';
 import { connect } from 'react-redux';
 import {add, load} from '../redux/messages.js';
-import socket from '../clientSocket'
+import socket from '../clientSocket';
+
 
 class Chat extends Component {
 

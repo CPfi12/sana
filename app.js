@@ -41,6 +41,7 @@ app.use('/strugg', require('./server/routes/strugg'));
 app.use('/friend', require('./server/routes/friends'));
 app.use('/description', require('./server/routes/description'));
 app.use('/nlp', require('./server/routes/nlp'));
+app.use('/profile', require('./server/routes/profile'));
 
 const port = process.env.PORT || 3000;
 var server;

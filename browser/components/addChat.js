@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import {loadBuds} from '../redux/buds.js';
 import {addChat} from '../redux/chat.js';
 import {change} from '../redux/filter.js';
+import { Link} from 'react-router-dom';
 
 class AddChat extends Component {
 
@@ -61,9 +62,12 @@ class AddChat extends Component {
         {
           peer.map((bud)=>{
             extra=''
+            console.log('BUDDD',bud);
             if(this.props.friends.indexOf(bud.name)!==-1)
                   extra ='**'
-            return (<li className='bud-list' onClick={()=>{this.props.addNewChat(bud.id)}} key={bud.id}><a><span className='bud-list'> {bud.alias+extra} </span></a> </li>)
+            let path = `/peerProfile/${bud.id}`;
+            console.log(path);
+            return (<li className='bud-list' key={bud.id}><span onClick={()=>{this.props.addNewChat(bud.id)}} className='bud-list'> {bud.alias+extra} </span><Link to={path}>MORE</Link> </li>)
           })
         }
         </ul>

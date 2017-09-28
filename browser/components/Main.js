@@ -7,6 +7,7 @@ import Signup from './Signup';
 import Sidebar from './Sidebar';
 import AddChat from './addChat';
 import Chat from './Chat';
+import PeerProfile from './PeerProfile';
 import Profile from './Profile'
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import { load } from '../redux/auth';
@@ -55,7 +56,8 @@ class Main extends Component {
               <Route exact path="/signup" component={Signup} />
               <Route exact path="/addChat" component={AddChat}/>
               <Route exact path="/chat/:room" component={Chat}/>
-              <Route exact path="/profile" component={Profile}/>  
+              <Route exact path="/profile" component={Profile}/> 
+              <Route exact path="/peerProfile/:id" component={PeerProfile}/> 
               <Route component={Home} />
           </Switch>
        </Router>

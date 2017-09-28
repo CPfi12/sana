@@ -8,6 +8,7 @@ import pers from './personal';
 import filter from './filter';
 import friends from './friends';
 import description from './description';
+import profile from './profile';
 
 
-export default combineReducers({ auth, buds, chat, messages, struggles, pers, filter, friends, description });
+export default combineReducers({ auth, buds, chat, messages, struggles, pers, filter, friends, description, profile });
