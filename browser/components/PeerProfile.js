@@ -20,18 +20,9 @@ class PeerProfile extends Component {
 
     if(this.props.person){
       this.props.loadPers(this.props.person);
-      this.props.loadProf(this.props.person)
+      this.props.loadProf(this.props.person);
     }
   }
-
-  /*componentWillReceiveProps(nextProps){
-      if(this.props.profile!==nextProps.profile){
-        console.log('REC PROPS');
-        this.props.loadPers(nextProps.person)
-        this.props.loadProf(nextProps.person);
-      }
-      
-  }*/
 
   onSubmit(evt){
     evt.preventDefault();
@@ -50,7 +41,6 @@ class PeerProfile extends Component {
 
   render () {
     var user = this.props.profile;
-    console.log('PROPS',this.props);
     return(
       
       <div className='center'>
@@ -60,8 +50,8 @@ class PeerProfile extends Component {
         <div>
           <h1 className='medblue'>{this.props.profile.alias}</h1>
           {
-            this.props.profile.tags.map((tag)=>{
-              return(<button type="button" className='btn btn-secondary space'>{tag}</button>);
+            this.props.profile.tags.map((tag,index)=>{
+              return(<button type="button" className='btn btn-secondary space' key={index}>{tag}</button>);
             })
           }
         </div> 
@@ -81,7 +71,6 @@ class PeerProfile extends Component {
 
 //----------- CONTAINER ------------
 const mapState = (state, ownProps) => {
-  console.log(state)
   return ({ currentUser: state.auth,
             struggles: state.struggles,
             pers: state.pers,

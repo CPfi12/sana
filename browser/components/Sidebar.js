@@ -31,7 +31,7 @@ class Sidebar extends Component {
                 let Mentee = chat.Mentee;
                 let budObj = (Mentee.alias===name) ? Mentee : Mentor;
                 if(this.props.friends.indexOf(budObj.name)!==-1)
-                  name+='**'
+                  name+='**';
                 let status = (budObj.isOnline) ? '+' : '-';
                 let classNom = (status==='+') ? 'online' : 'offline'; 
                 var exp = `/chat/${chat.thing}`

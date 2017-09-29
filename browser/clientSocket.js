@@ -10,19 +10,17 @@ var userId;
 
 socket.on('connect', () => {
 
-  console.log('I am now connected to the server!');
-
   socket.on('message', function(room){
-  		store.dispatch(load(room))
+  		store.dispatch(load(room));
   })
 
   socket.on('add-chat', function(){
-     store.dispatch(loadChats())
+     store.dispatch(loadChats());
   })
 
   socket.on('have-user', function(user){
   	 userId = user.id;
-  	 console.log('User with id '+ userId + ' is connected to socket ' + socket.id)
+  	 console.log('User with id '+ userId + ' is connected to socket ' + socket.id);
   	 
   });
 

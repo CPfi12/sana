@@ -16,7 +16,7 @@ router.get('/', function(req,res,next){
 router.post('/', function(req,res,next){
 	User.findById(req.session.userId)
 		.then((user)=>{
-			return user.update(req.body)
+			return user.update(req.body);
 		})
 		.then((user)=>{
 			res.send(user.description);

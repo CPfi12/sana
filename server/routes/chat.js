@@ -31,7 +31,7 @@ router.get('/loadChat', function(req, res, next){
   		]
 	})
 	.then((chats)=>{
-		res.send(chats)
+		res.send(chats);
 	})
 	.catch(next);
 })

@@ -33,7 +33,7 @@ class AddChat extends Component {
         }
         for(var i=0;i<a.length;i++){
             if(obj[a[i]])
-            obj[a[i]]--
+            obj[a[i]]--;
         }
         for(var key in obj){
             if(obj[key]>0)
@@ -61,12 +61,10 @@ class AddChat extends Component {
         <ul>
         {
           peer.map((bud)=>{
-            extra=''
-            console.log('BUDDD',bud);
+            extra='';
             if(this.props.friends.indexOf(bud.name)!==-1)
                   extra ='**'
             let path = `/peerProfile/${bud.id}`;
-            console.log(path);
             return (<li className='bud-list' key={bud.id}><span onClick={()=>{this.props.addNewChat(bud.id)}} className='bud-list'> {bud.alias+extra} </span><Link to={path}>MORE</Link> </li>)
           })
         }
@@ -87,7 +85,7 @@ class AddChat extends Component {
           <select name='sel'>
             {
               this.props.struggles && this.props.struggles.map((strug)=>{
-                return (<option value={strug.topic}>{strug.topic}</option>)
+                return (<option value={strug.topic} key={strug.id}>{strug.topic}</option>)
               })
             }  
           </select>
@@ -96,7 +94,7 @@ class AddChat extends Component {
       </form>
       {
         this.props.filter.length ? this.props.filter.map((topic)=>{
-          return(<div><button onClick={()=>{this.props.change(topic)}} className='btn btn-info space'>{topic} X </button></div>)
+          return(<div key={topic.id}><button onClick={()=>{this.props.change(topic)}} className='btn btn-info space'>{topic} X </button></div>)
         }) : null
       }
       </div>

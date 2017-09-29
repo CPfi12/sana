@@ -6,6 +6,7 @@ router.post('/', (req, res, next)=>{
 	if(!req.session.userId){
 		res.send({});
 	}
+	else{
 	let friend = User.findOne({where:req.body});
 	let user = User.findById(req.session.userId);
 	Promise.all([friend,user])
@@ -23,12 +24,13 @@ router.post('/', (req, res, next)=>{
 			res.send(newFriends);
 		})
 		.catch(next);
+	}
 	
 })
 
 router.get('/', (req,res,next)=>{
 
-	if(req.session.userId!==undefined){
+	if(req.session.userId){
 	User.findById(req.session.userId)
 		.then((user)=>{
 			return user.getFriends();

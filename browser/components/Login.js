@@ -51,8 +51,8 @@ class Login extends Component {
 
 //----------- CONTAINER ------------
 const mapState = (state) => {
-  console.log(state)
-  return ({ currentUser: state.auth })};
+  return ({ currentUser: state.auth })
+};
 
 const mapDispatch = function (dispatch) {
   return {

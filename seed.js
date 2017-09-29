@@ -14,6 +14,7 @@ const strug = [
 var promiseStrug = strug.map((str)=>Struggle.create(str));
 Promise.all(promiseStrug)
 	   .then((allDone)=>{
-	   		console.log('added!')
+	   		console.log('added!');
 	   })
+	   .catch(console.err)
 

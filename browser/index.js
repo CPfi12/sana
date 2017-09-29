@@ -5,11 +5,11 @@ import store from './redux/store.js';
 import Main from './components/Main.js';
 import '../public/index.scss';
 
-console.log(store)
+
 
 ReactDOM.render(
    <Provider store={store}>
-    <Main/>
+    	<Main/>
   </Provider>,
   document.getElementById('app') 
 )

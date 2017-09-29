@@ -49,6 +49,7 @@ export const logout = userId => dispatch =>{
 }
 
 export const load = user => dispatch => {
+	let found=true;
 	return axios.get('/auth/onLoad')
 		.then(res=>res.data)
 		.then(user=>{
@@ -58,9 +59,14 @@ export const load = user => dispatch => {
 		
 			return axios.put('/online/toggle/'+user.id)
 		 }
+		 else
+		 	found = false;
   	    })
   	    .then(()=>{
-  		    socket.emit('toggle')
+  	    	if(found){
+  	    		socket.emit('toggle')
+  	    	}
+  		    
   	    })
   	    .catch(console.err)
 		

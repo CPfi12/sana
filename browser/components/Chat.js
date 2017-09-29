@@ -33,36 +33,35 @@ class Chat extends Component {
     return(
       <div>
       <h3>{budName}</h3>
-     <div id='chatchat' className='chat'> 
-     <ul>
-     {
-       this.props.messages.map((message)=>{
-         return (
-               <div key={message.id}>
-                 <li className='chatMess'><span className='authorName'>{message.authorAlias}:</span></li>
-                 <li className='chatMess'><span className='authorMess'> {message.content}</span></li>
-               </div>
-              )
+      <div id='chatchat' className='chat'> 
+      <ul>
+      {
+        this.props.messages.map((message)=>{
+          return (
+                <div key={message.id}>
+                  <li className='chatMess'><span className='authorName'>{message.authorAlias}:</span></li>
+                  <li className='chatMess'><span className='authorMess'> {message.content}</span></li>
+                </div>
+               )
               
-       })
-     }
-     </ul>
-    </div>
-       <form onSubmit={(evt)=>{this.props.onSubmit(evt, this.props.currentUser.alias, this.props.room)}}>
-         <label className='role'>
-         Message:
-             <input type="text" name="mess" className='form-control'/>
-         </label>
-         <input type="submit" value="Submit" className='btn btn-info space'/>
-       </form>
-    </div>
+        })
+      }
+      </ul>
+      </div>
+        <form onSubmit={(evt)=>{this.props.onSubmit(evt, this.props.currentUser.alias, this.props.room)}}>
+          <label className='role'>
+          Message:
+              <input type="text" name="mess" className='form-control'/>
+          </label>
+          <input type="submit" value="Submit" className='btn btn-info space'/>
+        </form>
+     </div>
     );
   }
 }
 
 //----------- CONTAINER ------------
 const mapState = (state, ownProps) => {
-  console.log(state)
   return ({ currentUser: state.auth,
   messages: state.messages,
   room: ownProps.match.url.split('/')[2] })};
@@ -73,7 +72,7 @@ const mapDispatch = function (dispatch) {
       evt.preventDefault();
       var message = {authorAlias: userName, content: evt.target.mess.value}
       evt.target.mess.value = '';
-      dispatch(add(message, room))
+      dispatch(add(message, room));
     },
     loadMessages: (room) =>{
       dispatch(load(room));

@@ -16,8 +16,12 @@ router.post('/login', function(req, res, next){
 		include: [Struggle]
 	})
 	.then((user)=>{
-		req.session.userId = user.id;
-		res.send(user);
+		if(user){
+			req.session.userId = user.id;
+			res.send(user);
+		}
+		else
+			res.sendStatus(400);
 	})
 	.catch(next);
 })
