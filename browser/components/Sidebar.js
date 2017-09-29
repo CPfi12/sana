@@ -14,15 +14,7 @@ class Sidebar extends Component {
     this.props.loadingChats();
   }
 
-  /*componentWillUpdate(){
-    console.log('UPDATING', this.props);
-    this.props.loadingChats();
-  }*/
-
-  
-
   render () {
-    console.log('SIDEBAR RERENDERING', this.props.currentChats);
     return (
 
       <div id="sidebar-wrapper">
@@ -48,10 +40,8 @@ class Sidebar extends Component {
           }
           </ul>
           </h4>
-        </section>
-        
-      </sidebar> 
-        
+        </section>    
+      </sidebar>      
     </div>
     )
   }
@@ -65,7 +55,6 @@ const mapState = (state) => {
 
 const mapDispatch = dispatch => ({
       loadingChats: ()=>{
-        console.log('in mapDispatch!')
         dispatch(loadChats());
       }
 })

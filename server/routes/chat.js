@@ -17,6 +17,7 @@ router.get('/loadBuds', function(req, res, next){
 	.then((buds)=>{
 		res.send(buds);
 	})
+	.catch(next);
 })
 
 router.get('/loadChat', function(req, res, next){
@@ -32,6 +33,7 @@ router.get('/loadChat', function(req, res, next){
 	.then((chats)=>{
 		res.send(chats)
 	})
+	.catch(next);
 })
 
 router.post('/addChat/:mentorId', function(req, res, next){
@@ -61,6 +63,6 @@ router.post('/addChat/:mentorId', function(req, res, next){
 	.then((chat)=>{
 		res.send(chat);
 	})
-	.catch(console.err);
+	.catch(next);
 })
 module.exports =  router;

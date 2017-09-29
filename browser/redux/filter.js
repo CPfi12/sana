@@ -15,7 +15,6 @@ export const change = tag => ({ type: CHANGE, tag });
 export default function reducer (filter = [], action) {
   let newFilter = filter.slice(0);
   switch (action.type) {
-
     case CHANGE:
         if(filter.indexOf(action.tag)===-1)
           filter.push(action.tag)
@@ -24,7 +23,6 @@ export default function reducer (filter = [], action) {
           filter.splice(index,1);
         }
       	return filter;
-
     default:
       return newFilter;
   }

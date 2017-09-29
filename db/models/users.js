@@ -15,8 +15,7 @@ const User = db.define('user', {
   tags:{
   	type: Sequelize.ARRAY(Sequelize.STRING),
   	defaultValue: [],
-  	set(tag) {
-      
+  	set(tag) {  
       let list = this.getDataValue('tags').slice();
       if((typeof tag)==='string'){
           if(list.indexOf(tag)===-1)
@@ -28,7 +27,7 @@ const User = db.define('user', {
           this.setDataValue('tags', list);
       }
       else{
-        let newTags = list.slice();
+          let newTags = list.slice();
           for(var i=0;i<tag.length;i++){
             if(list.indexOf(tag[i])===-1)
               newTags.push(tag[i]);
@@ -37,9 +36,7 @@ const User = db.define('user', {
       }
     },
   }
-  //role: Sequelize.ENUM('Student', 'Peer Counselor', 'Healthcare Professional', 'Admin')
 })
 
-//User.hasOne(Chat);
-console.log(User);
+
 module.exports = User;

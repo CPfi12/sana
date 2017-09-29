@@ -3,29 +3,32 @@ const User = require('../../db/models/users.js');
 const Promise = require('bluebird');
 
 router.post('/', (req, res, next)=>{
-	console.log('ID', req.session.userId);
-	let x = User.findOne({where:req.body});
-	let y = User.findById(req.session.userId);
-	Promise.all([x,y])
-		.spread((x,y)=>{
-			return y.addFriend(x)
+	if(!req.session.userId){
+		res.send({});
+	}
+	let friend = User.findOne({where:req.body});
+	let user = User.findById(req.session.userId);
+	Promise.all([friend,user])
+		.spread((friend,user)=>{
+			return user.addFriend(friend)
 		})
-		.then((x)=>{
+		.then((_)=>{
 			return User.findById(req.session.userId);
 		})
-		.then((x)=>{
-			console.log(x);
-			return x.getFriends();
+		.then((user)=>{
+			return user.getFriends();
 		})
-		.then((y)=>{
-			console.log('FRIENDS???', y);
-			let newY = y.map(x=>x.name);
-			res.send(newY);
+		.then((friends)=>{
+			let newFriends = friends.map(friend=>friend.name);
+			res.send(newFriends);
 		})
+		.catch(next);
 	
 })
 
 router.get('/', (req,res,next)=>{
+
+	if(req.session.userId!==undefined){
 	User.findById(req.session.userId)
 		.then((user)=>{
 			return user.getFriends();
@@ -34,6 +37,11 @@ router.get('/', (req,res,next)=>{
 			let frName = friends.map((friend)=>friend.name);
 			res.send(frName);
 		})
+		.catch(next);
+	}
+	else{
+		res.send('none found')
+	}
 
 })
 

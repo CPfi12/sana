@@ -23,27 +23,26 @@ class Login extends Component {
 
 
   render () {
-    console.log('Rendering with ', this.props.currentUser, this.props);
     return (
       <div>
-      {!this.props.currentUser ? 
-      (<div className='center'>
-      <h3> Log In {this.props.currentUser}</h3>
+        {!this.props.currentUser ? 
+        (<div className='center'>
+          <h3> Log In {this.props.currentUser}</h3>
      
-       <form onSubmit={this.onSubmit}>
-        <label>
-            Name:
-            <input type="text" name="name" className='form-control' />
-        </label>
-        <br/>
-         <label>
-            Password:
-            <input type="text" name="pass" className='form-control' />
-        </label>
-        <br/>
-        <input type="submit" value="Submit" className='btn btn-primary' />
-      </form>
-      </div>) :
+          <form onSubmit={this.onSubmit}>
+            <label>
+                Name:
+                <input type="text" name="name" className='form-control' />
+            </label>
+            <br/>
+            <label>
+                Password:
+                <input type="text" name="pass" className='form-control' />
+            </label>
+            <br/>
+                <input type="submit" value="Submit" className='btn btn-primary' />
+            </form>
+        </div>) :
       (<h1>Welcome {this.props.currentUser.name}!</h1>)}
       </div>
     );

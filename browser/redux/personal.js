@@ -17,26 +17,22 @@ const load = pers => {
 /* ------------------    REDUCER    --------------------- */
 
 export default function reducer (pers = [], action) {
-  console.log('in reducer', action)
   var newPers = pers.slice(0);
   switch (action.type) {
-
     case LOAD:
     	return action.pers
-
     default:
       return newPers;
   }
 }
 
 export const loadPers = (id) => dispatch =>{
-	console.log('IDDD',id);
 	return axios.get('/strugg/all/'+id)
 	    .then(res=>res.data)
 		.then(tags=>{
-			console.log('in loadStrug', tags)
 			dispatch(load(tags))
 		})
+		.catch(console.err)
 }
 
 export const addPers = (user,strug) => dispatch =>{
@@ -45,4 +41,5 @@ export const addPers = (user,strug) => dispatch =>{
 		.then(user=>{
 			dispatch(load(user.tags));
 		})
+		.catch(console.err)
 }

@@ -14,7 +14,8 @@ router.post('/addMessage/:room', function(req, res, next){
 	})
 	.then((message)=>{
 		res.send(message)
-	})	
+	})
+	.catch(next);	
 })
 
 router.get('/getMessages/:room', function(req,res,next){
@@ -33,6 +34,7 @@ router.get('/getMessages/:room', function(req,res,next){
 	.then((messages)=>{
 		res.send(messages);
 	})
+	.catch(next);
 })
 
 module.exports = router;

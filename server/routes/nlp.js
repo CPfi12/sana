@@ -11,43 +11,6 @@ var natural_language_understanding = new NaturalLanguageUnderstandingV1({
   'version_date': '2017-02-27'
 });
 
-router.get('/',(req,res,next)=>{
-	var parameters = {
-        'text': 'IBM is an American multinational technology company headquartered in Armonk, New York, United States, with operations in over 170 countries.',
-        'features': {
-        'entities': {
-        'emotion': true,
-        'sentiment': true,
-        'limit': 10
-    },
-        'keywords': {
-        'emotion': true,
-        'sentiment': true,
-        'limit': 10
-    }
-  }
-}
-User.findById(1)
-	.then((user)=>{
-		let x = 'hi';
-		natural_language_understanding.analyze(parameters, function(err, response) {
-  				if (err)
-    				console.log('error:', err);
-  				else{
-    				//x = JSON.stringify(response, null, 2);
-    				console.log('x', x[0]);
-    				//console.log('user', user)
-    				user.update({description: response.language})
-    					.then((newUser)=>{
-    						console.log('should have updated!!!')
-    						res.send(response);
-    					})
-  				}
-		});
-	})
-	
-
-})
 
 router.post('/newDescription', (req,res,next)=>{
 	let user = User.findById(req.session.userId);
@@ -62,7 +25,6 @@ router.post('/newDescription', (req,res,next)=>{
   				else{
   					let newStrugg = [];
   					let foundStrugs = response.keywords.map((keywordObj)=>keywordObj.text);
-  					console.log(foundStrugs);
   					for(var i=0;i<struggs.length;i++){
   						for(var j=0;j<foundStrugs.length;j++){
   							if(foundStrugs[j]===struggs[i]){
@@ -77,6 +39,7 @@ router.post('/newDescription', (req,res,next)=>{
   				}
 		});
 		})
+    .catch(next);
 })
 
 module.exports = router;

@@ -15,11 +15,8 @@ export const Fr = fr => ({ type: ADD, fr });
 export default function reducer (friends = [], action) {
   let newF = friends.slice(0);
   switch (action.type) {
-
     case ADD:
-        //newF.push(action.fr);
       	return action.fr;
-
     default:
       return newF;
   }
@@ -28,17 +25,18 @@ export default function reducer (friends = [], action) {
 export const addFr = (name) => dispatch =>{
   return axios.post('/friend',{name: name})
       .then(res=>res.data)
-    .then(friends=>{
-      console.log('WE HAVE???', friends);
-      dispatch(Fr(friends))
-    })
+      .then(friends=>{
+         dispatch(Fr(friends))
+      })
+      .catch(console.err)
 }
 
 export const getFr = (name) => dispatch =>{
   return axios.get('/friend')
      .then(res=>res.data)
      .then(friends=>{
-       console.log('WE HAVE???', friends);
-       dispatch(Fr(friends))
+       if(friends!=='not found')
+          dispatch(Fr(friends))
      })
+     .catch(console.err)
 }

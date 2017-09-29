@@ -12,8 +12,7 @@ const session = require('express-session');
 
 // handle sockets
 
-console.log(User);
-console.log(Chat);
+
 //middleware
 //app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -48,7 +47,7 @@ var server;
 db.sync()
   .then(function(){
     server = app.listen(port, function(){
-    	console.log('Listening on 3000???')
+    	console.log('Listening on 3000:)8')
     }) 
   })
   .then(()=>{

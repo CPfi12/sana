@@ -17,10 +17,8 @@ class PeerProfile extends Component {
   }
 
   componentDidMount(){
-    console.log('IN PEER PROFILE!!!!!!!!')
 
     if(this.props.person){
-      console.log('LOAD PROFILE ON MOUNT');
       this.props.loadPers(this.props.person);
       this.props.loadProf(this.props.person)
     }

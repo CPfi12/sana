@@ -9,6 +9,7 @@ router.get('/:id', (req,res,next)=>{
 		.then((user)=>{
 			res.send(user);
 		})
+		.catch(next);
 
 })
 

@@ -19,17 +19,23 @@ router.post('/login', function(req, res, next){
 		req.session.userId = user.id;
 		res.send(user);
 	})
+	.catch(next);
 })
 
 router.get('/onLoad', function(req, res, next){
-	User.findOne({
-		where:{
-			id: req.session.userId
-		}
-	})
-	.then((user)=>{
-		res.send(user);
-	})
+	if(req.session.userId){
+		User.findOne({
+			where:{
+				id: req.session.userId
+			}
+		})
+		.then((user)=>{
+			res.send(user);
+		})
+		.catch(next);
+	} else{
+		res.send("not found");
+	}
 })
 
 router.post('/remove', function(req,res,next){
@@ -47,6 +53,7 @@ router.post('/signup', function(req,res,next){
 		.then((user)=>{
 			res.send(user);
 		})
+		.catch(next);
 })
 
 module.exports = router;

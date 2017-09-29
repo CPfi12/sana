@@ -6,7 +6,5 @@ const ChatApp = db.define('chatApp',{
 	thing: Sequelize.STRING
 })
 
-console.log('ChatAPP');
-
 
 module.exports = ChatApp;

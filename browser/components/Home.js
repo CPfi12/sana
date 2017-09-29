@@ -8,7 +8,6 @@ export default class Home extends Component {
   }
 
   render () {
-    console.log('REndered home anyway?????')
     return (
       <div>
        <h1>HOME</h1>

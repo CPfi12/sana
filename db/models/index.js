@@ -3,7 +3,7 @@ var ChatApp = require('./chat');
 let Messages = require('./messages');
 let Struggle = require('./struggle');
 
-console.log('running this????');
+
 ChatApp.belongsTo(User, {as: 'Mentor'});
 ChatApp.belongsTo(User, {as: 'Mentee'});
 Messages.belongsTo(ChatApp);

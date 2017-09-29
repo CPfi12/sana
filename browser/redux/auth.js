@@ -52,14 +52,17 @@ export const load = user => dispatch => {
 	return axios.get('/auth/onLoad')
 		.then(res=>res.data)
 		.then(user=>{
+			if(user!=='not found'){
 			dispatch(set(user));
 			socket.emit('have-user', user);
 		
 			return axios.put('/online/toggle/'+user.id)
-  	 })
-  	.then(()=>{
-  		socket.emit('toggle')
-  	});
+		 }
+  	    })
+  	    .then(()=>{
+  		    socket.emit('toggle')
+  	    })
+  	    .catch(console.err)
 		
 }
 
@@ -67,14 +70,13 @@ export const load = user => dispatch => {
 
 export const login = credentials => dispatch => {
   return axios.post('/auth/login', credentials)
-  .then(res=>res.data)
-  .then(user => {
-    dispatch(set(user));
-    socket.emit('have-user', user);
-    return axios.put('/online/toggle/'+user.id)
-  })
-  .then(()=>{
-  		socket.emit('toggle')
-
-  });
+       .then(res=>res.data)
+       .then(user => {
+           dispatch(set(user));
+           socket.emit('have-user', user);
+           return axios.put('/online/toggle/'+user.id)
+       })
+       .then(()=>{
+  		   socket.emit('toggle')
+       })
 };

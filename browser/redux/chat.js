@@ -17,13 +17,11 @@ const load = chats => ({type: LOAD, chats})
 export default function reducer (chats = [], action) {
   var newChat = chats.slice(0);
   switch (action.type) {
-
     case ADD:
       	newChat.push(action.chat);
       	return newChat;
     case LOAD:
     	return action.chats
-
     default:
       return newChat;
   }
@@ -36,13 +34,14 @@ export const addChat = (mentorId) => dispatch =>{
 			dispatch(add(chat))
 			socket.emit('add-chat');
 		})
+		.catch(console.err)
 }
 
 export const loadChats = () => dispatch =>{
-	console.log('in LOAD CHATS')
 	return axios.get('/chat/loadChat')
 		.then(res=> res.data)
 		.then(chats=>{
 			dispatch(load(chats))
 		})
+		.catch(console.err)
 }

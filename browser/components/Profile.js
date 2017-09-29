@@ -16,7 +16,6 @@ class Profile extends Component {
   }
 
   componentDidMount(){
-    console.log('MOUNTING PROFILE???')
     if(this.props.currentUser){
       this.props.loadPers(this.props.currentUser.id);
       this.props.loadDesc();
@@ -50,7 +49,6 @@ class Profile extends Component {
 
   render () {
     var user = this.props.currentUser;
-    console.log('PROPS',this.props);
     return(
       
       <div className='center'>
@@ -61,7 +59,7 @@ class Profile extends Component {
           {
             this.props.struggles.map((strug)=>{
               var btnType = (this.props.pers.indexOf(strug.topic)!==-1) ? 'btn btn-primary space' : 'btn btn-secondary space';
-              return(<button type="button" onClick={()=>{this.props.addPers(this.props.currentUser.id,strug.id)}} className={btnType}>{strug.topic}</button>);
+              return(<button key={strug.id} type="button" onClick={()=>{this.props.addPers(this.props.currentUser.id,strug.id)}} className={btnType}>{strug.topic}</button>);
             })
           }
           </div>
@@ -71,10 +69,10 @@ class Profile extends Component {
         <form onSubmit={this.onSubmit}>
           <label>
             Friend Name:
-                <input type="text" name="name" className='form-control' />
+              <input type="text" name="name" className='form-control' />
           </label>
           <br/>
-          <input type="submit" value="Submit" className='btn btn-primary' />
+              <input type="submit" value="Submit" className='btn btn-primary' />
         </form>
         <ul>
         {
@@ -83,14 +81,14 @@ class Profile extends Component {
           })
         }
         </ul>
-        <form onSubmit={this.onDescSubmit}>
-          <label>
-            About Me:    
-          </label>
-          <br/>
-          <textarea name='desc' placeholder={this.props.description}/>
-          <br/>
-          <input type="submit" value="Submit" className='btn btn-primary' />
+         <form onSubmit={this.onDescSubmit}>
+           <label>
+             About Me:    
+           </label>
+           <br/>
+              <textarea name='desc' placeholder={this.props.description}/>
+           <br/>
+              <input type="submit" value="Submit" className='btn btn-primary' />
         </form>
         
         </div>
@@ -101,7 +99,6 @@ class Profile extends Component {
 
 //----------- CONTAINER ------------
 const mapState = (state, ownProps) => {
-  console.log(state)
   return ({ currentUser: state.auth,
             struggles: state.struggles,
             pers: state.pers,

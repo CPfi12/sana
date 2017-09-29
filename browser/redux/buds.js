@@ -26,9 +26,10 @@ export default function reducer (buds = [], action) {
 export const loadBuds = () => dispatch =>{
 	return axios.get('/chat/loadBuds')
 	    .then(res=>res.data)
-		.then(buds=>{
-			dispatch(get(buds))
-		})
+		  .then(buds=>{
+			   dispatch(get(buds));
+		  })
+      .catch(console.err)
 }
 
 

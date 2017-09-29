@@ -16,7 +16,6 @@ class Navbar extends Component {
   }
 
   render () {
-    console.log('RERENDING NAV', this.props.currentUser);
     return (
       <div>
         <nav className="navbar navbar-default">

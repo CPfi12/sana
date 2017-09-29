@@ -10,6 +10,7 @@ router.get('/', function(req,res,next){
 		.then(user=>{
 			res.send(user.description);
 		})
+		.catch(next);
 })
 
 router.post('/', function(req,res,next){
@@ -20,6 +21,7 @@ router.post('/', function(req,res,next){
 		.then((user)=>{
 			res.send(user.description);
 		})
+		.catch(next);
 
 
 })

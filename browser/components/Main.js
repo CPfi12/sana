@@ -29,8 +29,9 @@ class Main extends Component {
   componentWillReceiveProps(nextProps){
     let first = this.props;
     let sec = nextProps.currentUser;
-    if(first!==sec)
+    if(first!==sec){
       this.props.loadFr();         
+    }
   }
 
   render () {

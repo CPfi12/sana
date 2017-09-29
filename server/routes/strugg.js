@@ -12,18 +12,11 @@ router.get('/all', function(req,res,next){
 })
 
 router.get('/all/:id', function(req,res,next){
-	console.log('second!', req.params.id);
-	/*User.findById(req.params.id)
-		.then(user=>{
-			return user.getStruggles()
-		})
-		.then(persStrug=>{
-			res.send(persStrug);
-		})*/
 	User.findById(req.params.id)
 		.then(user=>{
 			res.send(user.tags);
 		})
+		.catch(next);
 })
 
 router.post('/:strugId/:userId', function(req,res,next){
@@ -33,21 +26,17 @@ router.post('/:strugId/:userId', function(req,res,next){
 		.spread((user, strug)=>{
 			return user.addStruggle(strug);
 		})
-		.then((th)=>{
-			console.log(th);
+		.then((_)=>{
 			return Promise.all([user,strug])
 		})
 		.spread((use,str)=>{
-			console.log(use.id,str.topic)
 			return use.update({tags:str.topic})
 		})
 		.then(()=>{
-			console.log('DONE??')
 			return User.findById(req.params.userId)
 		})
-		.then((stuff)=>{
-			console.log('stuff??', stuff)
-			res.send(stuff);
+		.then((strugList)=>{
+			res.send(strugList);
 		})
 		.catch(next)
 

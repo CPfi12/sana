@@ -30,22 +30,20 @@ export default function reducer (messages = [], action) {
 
 
 export const add = (body, room) => dispatch =>{
-	console.log('in signin thunk!')
 	return axios.post('/messages/addMessage/'+room, body)
 	    .then(res=>res.data)
 		.then(user=>{
-			console.log('WHAT BACKEND MADE',user);
 			dispatch(addMess(user))
 			socket.emit('message', room);
 		})
+		.catch(console.err)
 }
 
 export const load = (room) => dispatch =>{
-	console.log('in loading thunk!', room);
 	return axios.get('/messages/getMessages/'+room)
 	    .then(res=>res.data)
 		.then(messages=>{
-			console.log('MESS WE LOADED', messages);
 			dispatch(loadMess(messages))
 		})
+		.catch(console.err)
 }

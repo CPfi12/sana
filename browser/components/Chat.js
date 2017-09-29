@@ -13,7 +13,6 @@ class Chat extends Component {
 
   componentDidMount(){
     this.props.loadMessages(this.props.room);
-    //why is window.location.pathname not what we think
     socket.emit('joinRoom', this.props.room);
   }
 
@@ -35,28 +34,28 @@ class Chat extends Component {
       <div>
       <h3>{budName}</h3>
      <div id='chatchat' className='chat'> 
-    <ul>
-    {
-      this.props.messages.map((message)=>{
-        return (
-              <div>
-                <li className='chatMess'><span className='authorName'>{message.authorAlias}:</span></li>
-                <li className='chatMess'><span className='authorMess'> {message.content}</span></li>
-              </div>
+     <ul>
+     {
+       this.props.messages.map((message)=>{
+         return (
+               <div key={message.id}>
+                 <li className='chatMess'><span className='authorName'>{message.authorAlias}:</span></li>
+                 <li className='chatMess'><span className='authorMess'> {message.content}</span></li>
+               </div>
               )
               
-      })
-    }
-    </ul>
+       })
+     }
+     </ul>
     </div>
-      <form onSubmit={(evt)=>{this.props.onSubmit(evt, this.props.currentUser.alias, this.props.room)}}>
-        <label className='role'>
-        Message:
-            <input type="text" name="mess" className='form-control'/>
-        </label>
-        <input type="submit" value="Submit" className='btn btn-info space'/>
-      </form>
-      </div>
+       <form onSubmit={(evt)=>{this.props.onSubmit(evt, this.props.currentUser.alias, this.props.room)}}>
+         <label className='role'>
+         Message:
+             <input type="text" name="mess" className='form-control'/>
+         </label>
+         <input type="submit" value="Submit" className='btn btn-info space'/>
+       </form>
+    </div>
     );
   }
 }
